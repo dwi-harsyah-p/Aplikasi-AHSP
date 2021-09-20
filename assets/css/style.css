@@ -1,0 +1,24 @@
+.transition {
+    transition: 0.5s;
+}
+
+.displayblock {
+    display: block;
+}
+
+.displaynone {
+    display: none;
+}
+
+.color-red {
+    color: #b70000;
+}
+
+.color-blue {
+    color: rgba(0, 81, 255, 0.781);
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
