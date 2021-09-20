@@ -37,7 +37,17 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<?php
+if ($this->session->flashdata('msg')) { ?>
 
+
+
+    <script>
+        swal("Berhasil!", "Data Telah Ditambahkan!", "success");
+    </script>
+
+<?php } ?>
 <script src="<?= base_url('assets/'); ?>js/script.js"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
@@ -50,29 +60,11 @@
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
+<script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<!-- <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script> -->
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.aktif').click(function() {
-            var menu = $(this).attr('id');
-            if (menu == "dashboard-link") {
-                $('.level').load('dashboard.html');
-            } else if (menu == "lv1") {
-                $('.level').load('level1.html');
-            } else if (menu == "lv2") {
-                $('.level').load('level2.html');
-            } else if (menu == "lv3") {
-                $('.level').load('level3.html');
-            }
-        });
-        $('.level').load('dashboard.html');
-    });
-</script>
+<script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
 </body>
 

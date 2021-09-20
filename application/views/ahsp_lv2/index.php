@@ -6,7 +6,7 @@
             <div class="table-responsive">
                 <h3 class="text-center">Level 2</h3>
                 <a href="<?= base_url('Ahsp2/tambah'); ?>" class="btn btn-success mb-2">+ Tambah Data</a>
-                <table class="table table-hover table-striped text-center bg-light">
+                <table class="table table-bordered table-hover table-striped bg-light" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>#</th>
