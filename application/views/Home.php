@@ -1,7 +1,7 @@
 <!-- Content -->
 <div class="container-fluid level">
     <div class="text-center my-5">
-        <h2>SELAMAT DATANG</h2>
+        <h2>SELAMAT DATANG DIEDIIIT</h2>
         <h4>AHSP (ANALISIS HARGA SATUAN PEKERJAAN) </h4>
     </div>
 
