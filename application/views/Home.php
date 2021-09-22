@@ -1,7 +1,7 @@
 <!-- Content -->
 <div class="container-fluid level">
     <div class="text-center my-5">
-        <h2>SELAMAT DATANG INI DI EDIT LAGI NYUBO BRANCH, PUSH KE BRANCH, TES PUSH LG</h2>
+        <h2>SELAMAT DATANG INI DI EDIT INI MASUK KE MASTER LAGI</h2>
         <h4>AHSP (ANALISIS HARGA SATUAN PEKERJAAN) </h4>
     </div>
 
