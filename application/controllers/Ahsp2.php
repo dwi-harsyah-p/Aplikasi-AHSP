@@ -13,12 +13,6 @@ class Ahsp2 extends CI_Controller
 
     public function index()
     {
-        $row = $this->session->flashdata('row');
-        if ($row) {
-            echo "<script>
-                    alert('Data Masih Digunakan sebanyak $row data')                    
-                </script>";
-        }
         $kode = $this->session->userdata('kode');
 
         // if ($kode) {

@@ -42,7 +42,7 @@ class Ahsp1 extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $this->Ahsp_model->tambah('ahsp_level_1');
-            $this->session->set_flashdata('msg', "Ditambahkan");
+            $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('ahsp1');
         }
     }
@@ -58,6 +58,7 @@ class Ahsp1 extends CI_Controller
             redirect('ahsp2');
         } else {
             $this->Ahsp_model->hapus('ahsp_level_1', $id);
+            $this->session->set_flashdata('flash', 'Dihapus');
             redirect('ahsp1');
         }
     }
@@ -80,6 +81,7 @@ class Ahsp1 extends CI_Controller
                 $this->load->view('templates/footer');
             } else {
                 $this->Ahsp_model->edit('ahsp_level_1');
+                $this->session->set_flashdata('flash', 'Diubah');
                 redirect('ahsp1');
             }
         }
