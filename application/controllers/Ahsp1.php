@@ -15,7 +15,7 @@ class Ahsp1 extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Ahsp1/index';
-        $data['ahsp_lvl1'] = $this->Ahsp_model->getTable('ahsp_level_1', 'id')->result_array();
+        $data['ahsp_lvl1'] = $this->Ahsp_model->getTable('ahsp_level_1', 'kode_lvl_1')->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('ahsp_lv1/index', $data);
         $this->load->view('templates/footer', $data);

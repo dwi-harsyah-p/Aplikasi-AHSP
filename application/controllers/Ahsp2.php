@@ -50,6 +50,7 @@ class Ahsp2 extends CI_Controller
             $this->load->view('templates/footer', $data);
         } else {
             $this->Ahsp_model->tambah('ahsp_level_2');
+            $this->session->set_flashdata('flash', 'Ditambahkan');
             redirect('ahsp2');
         }
     }
@@ -57,6 +58,7 @@ class Ahsp2 extends CI_Controller
     public function hapus($id)
     {
         $this->Ahsp_model->hapus('ahsp_level_2', $id);
+        $this->session->set_flashdata('flash', 'Dihapus');
         redirect($_SERVER['HTTP_REFERER']);
     }
 
@@ -81,6 +83,7 @@ class Ahsp2 extends CI_Controller
                 $this->load->view('templates/footer', $data);
             } else {
                 $this->Ahsp_model->edit('ahsp_level_2');
+                $this->session->set_flashdata('flash', 'Diubah');
                 redirect('ahsp2');
             }
         }
