@@ -1,6 +1,7 @@
 <!-- Lingkup Pekerjaan  -->
 <!-- menu 1 -->
 <div class="container-fluid">
+    <div class="flash-delete" data-flashdata="<?= $this->session->flashdata('row') ?>"></div>
     <div class="card shadow mb-4">
         <div class="card-body table-border-style">
             <div class="table-responsive">
