@@ -4,7 +4,7 @@
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
 
     <div class="card shadow mb-4">
-        <div class="card-body table-border-style">
+        <div class="card-body">
             <div class="table-responsive">
                 <h3 class="text-center">Level 1</h3>
                 <a href="<?= base_url('Ahsp1/tambah'); ?>" class="btn btn-success mb-2">+ Tambah Data</a>
