@@ -1,3 +1,4 @@
+<div class="flash-pesan" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 <div class="container">
     <div class="m-auto">
         <div class="card shadow mb-4">

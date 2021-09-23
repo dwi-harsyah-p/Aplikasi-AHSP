@@ -2,7 +2,6 @@
 <!-- menu 1 -->
 <div class="container-fluid">
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
-
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">

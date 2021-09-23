@@ -14,11 +14,7 @@ class Ahsp2 extends CI_Controller
     public function index()
     {
         $kode = $this->session->userdata('kode');
-
-        // if ($kode) {
-
-
-        if ($kode && $this->Ahsp_model->getTablewhere('ahsp_level_2', 'kode_lvl_1', $kode)->num_rows() > 0) {
+        if ($kode) {
             $data['ahsp'] = $this->Ahsp_model->getTablewhere('ahsp_level_2', 'kode_lvl_1', $kode)->result_array();
             $this->session->unset_userdata('kode');
         } else {
@@ -32,26 +28,31 @@ class Ahsp2 extends CI_Controller
 
     public function tambah()
     {
-        $data['ahsp'] = $this->Ahsp_model->getTable('ahsp_level_1', 'kode_lvl_1')->result_array();
-        $this->form_validation->set_rules('kode1', 'Kode', 'required|trim', ['required' => '{field} harus diisi']);
-        $this->form_validation->set_rules('kode2', 'Kode', 'required|trim|is_unique[ahsp_level_2.kode_lvl_2]', [
-            'is_unique' => '{field} sudah ada',
-            'required' => '{field} harus diisi'
-        ]);
-        $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim|is_unique[ahsp_level_2.uraian]', [
-            'is_unique' => '{field} sudah ada',
-            'required' => '{field} harus diisi'
-        ]);
-        $data['judul'] = 'Insert AHSP Level 2';
-
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('ahsp_lv2/tambah', $data);
-            $this->load->view('templates/footer', $data);
+        if ($this->Ahsp_model->getTable('ahsp_level_1', 'kode_lvl_1')->num_rows() < 1) {
+            $this->session->set_flashdata('msg', 'Harus isi Level 1 Terlebih Dahulu!');
+            redirect('ahsp1/tambah');
         } else {
-            $this->Ahsp_model->tambah('ahsp_level_2');
-            $this->session->set_flashdata('flash', 'Ditambahkan');
-            redirect('ahsp2');
+            $data['ahsp'] = $this->Ahsp_model->getTable('ahsp_level_1', 'kode_lvl_1')->result_array();
+            $this->form_validation->set_rules('kode1', 'Kode', 'required|trim', ['required' => '{field} harus diisi']);
+            $this->form_validation->set_rules('kode2', 'Kode', 'required|trim|is_unique[ahsp_level_2.kode_lvl_2]', [
+                'is_unique' => '{field} sudah ada',
+                'required' => '{field} harus diisi'
+            ]);
+            $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim|is_unique[ahsp_level_2.uraian]', [
+                'is_unique' => '{field} sudah ada',
+                'required' => '{field} harus diisi'
+            ]);
+            $data['judul'] = 'Insert AHSP Level 2';
+
+            if ($this->form_validation->run() == false) {
+                $this->load->view('templates/header', $data);
+                $this->load->view('ahsp_lv2/tambah', $data);
+                $this->load->view('templates/footer', $data);
+            } else {
+                $this->Ahsp_model->tambah('ahsp_level_2');
+                $this->session->set_flashdata('flash', 'Ditambahkan');
+                redirect('ahsp2');
+            }
         }
     }
 
@@ -77,6 +78,7 @@ class Ahsp2 extends CI_Controller
             $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim', [
                 'required' => '{field} harus diisi'
             ]);
+            $data['judul'] = 'Edit Data Ahsp2';
             if ($this->form_validation->run() == false) {
                 $this->load->view('templates/header', $data);
                 $this->load->view('ahsp_lv2/edit', $data);

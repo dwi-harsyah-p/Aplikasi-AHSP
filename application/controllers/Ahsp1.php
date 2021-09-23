@@ -74,7 +74,7 @@ class Ahsp1 extends CI_Controller
         } else {
             $data['ahsp'] = $this->Ahsp_model->getTablewhere('ahsp_level_1', 'id', $id)->row_array();
             $this->form_validation->set_rules('kode1', 'Kode', 'required');
-            $data['judul'] = 'Tambah Data Ahsp1';
+            $data['judul'] = 'Edit Data Ahsp1';
             if ($this->form_validation->run() == false) {
                 $this->load->view('templates/header', $data);
                 $this->load->view('ahsp_lv1/edit', $data);

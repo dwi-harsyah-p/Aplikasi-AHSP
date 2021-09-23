@@ -17,6 +17,16 @@ const flashData = $('.flash-data').data('flashdata');
         });
     }
 
+    const msg = $('.flash-pesan').data('flashdata');
+
+    if (msg) {
+        swal({
+            title: 'Data',
+            text: msg,
+            icon: 'error'
+        });
+    }
+
     $('.tombol-hapus').on('click', function(e) {
 
         e.preventDefault();
@@ -37,6 +47,10 @@ const flashData = $('.flash-data').data('flashdata');
 
     $('select#kode1').on('change', function() {
         $('#kode2').val($(this).val() + '.');
-    });
+    });    
 
-    $('#kode2').val($('select#kode1').val() + '.');
+    if ($(location).attr('href') == 'http://localhost/Project/pu/Ahsp2/tambah') { 
+        $(document).ready(function(){
+            $('#kode2').val($('select#kode1').val() + '.'); 
+        });
+    }    
