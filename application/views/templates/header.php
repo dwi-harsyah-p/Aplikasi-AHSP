@@ -69,6 +69,7 @@
                         <a href="<?= base_url('ahsp1') ?>" id="lv1" class="collapse-item aktif">Level 1</a>
                         <a href="<?= base_url('ahsp2') ?>" id="lv2" class="collapse-item aktif">Level 2</a>
                         <a href="<?= base_url('ahsp3') ?>" id="lv3" class="collapse-item aktif">Level 3</a>
+                        <a href="<?= base_url('ahsp4') ?>" id="lv4" class="collapse-item aktif">Level 4</a>
                     </div>
                 </div>
             </li>

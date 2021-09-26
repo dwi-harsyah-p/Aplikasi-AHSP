@@ -58,7 +58,7 @@ class Ahsp1 extends CI_Controller
 
             if ($lv2->num_rows() > 0) {
                 $this->session->set_flashdata('row', $lv2->num_rows);
-                $this->session->set_userdata('kode', $lv1['kode_lvl_1']);
+                $this->session->set_userdata('kode1', $lv1['kode_lvl_1']);
                 redirect('ahsp2');
             } else {
                 $this->Ahsp_model->hapus('ahsp_level_1', $id);

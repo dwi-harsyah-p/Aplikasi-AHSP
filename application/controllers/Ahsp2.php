@@ -13,10 +13,10 @@ class Ahsp2 extends CI_Controller
 
     public function index()
     {
-        $kode = $this->session->userdata('kode');
+        $kode = $this->session->userdata('kode1');
         if ($kode) {
             $data['ahsp'] = $this->Ahsp_model->getTablewhere('ahsp_level_2', 'kode_lvl_1', $kode)->result_array();
-            $this->session->unset_userdata('kode');
+            $this->session->unset_userdata('kode1');
         } else {
             $data['ahsp'] = $this->Ahsp_model->getTable('ahsp_level_2', 'kode_lvl_2')->result_array();
         }
@@ -67,10 +67,10 @@ class Ahsp2 extends CI_Controller
 
             if ($lv3->num_rows() > 0) {
                 $this->session->set_flashdata('row', $lv3->num_rows);
-                $this->session->set_userdata('kode', $lv2['kode_lvl_2']);
+                $this->session->set_userdata('kode2', $lv2['kode_lvl_2']);
                 redirect('ahsp3');
             } else {
-                $this->Ahsp_model->hapus('ahsp_level_3', $id);
+                $this->Ahsp_model->hapus('ahsp_level_2', $id);
                 $this->session->set_flashdata('flash', 'Dihapus');
                 redirect($_SERVER['HTTP_REFERER']);
             }

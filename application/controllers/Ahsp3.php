@@ -13,10 +13,10 @@ class Ahsp3 extends CI_Controller
 
     public function index()
     {
-        $kode = $this->session->userdata('kode');
+        $kode = $this->session->userdata('kode2');
         if ($kode) {
             $data['ahsp'] = $this->Ahsp_model->getTablewhere('ahsp_level_3', 'kode_lvl_2', $kode)->result_array();
-            $this->session->unset_userdata('kode');
+            $this->session->unset_userdata('kode2');
         } else {
             $data['ahsp'] = $this->Ahsp_model->getTable('ahsp_level_3', 'kode_lvl_3')->result_array();
         }
@@ -62,9 +62,18 @@ class Ahsp3 extends CI_Controller
         if ($id == null || $data['cekid'] < 1) {
             redirect('ahsp3');
         } else {
-            $this->Ahsp_model->hapus('ahsp_level_3', $id);
-            $this->session->set_flashdata('flash', 'Dihapus');
-            redirect($_SERVER['HTTP_REFERER']);
+            $lv3 = $this->Ahsp_model->getTablewhere('ahsp_level_3', 'id', $id)->row_array();
+            $lv4 = $this->Ahsp_model->getTablewhere('ahsp_level_4', 'kode_lvl_3', $lv3['kode_lvl_3']);
+
+            if ($lv4->num_rows() > 0) {
+                $this->session->set_flashdata('row', $lv4->num_rows);
+                $this->session->set_userdata('kode3', $lv3['kode_lvl_3']);
+                redirect('ahsp4');
+            } else {
+                $this->Ahsp_model->hapus('ahsp_level_3', $id);
+                $this->session->set_flashdata('flash', 'Dihapus');
+                redirect($_SERVER['HTTP_REFERER']);
+            }
         }
     }
 

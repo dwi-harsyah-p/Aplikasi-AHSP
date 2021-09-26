@@ -64,3 +64,13 @@ const flashData = $('.flash-data').data('flashdata');
             $('#kode3').val($('select#kode2').val() + '.'); 
         });
     }    
+    
+    $('select#kode3').on('change', function() {
+        $('#kode4').val($(this).val() + '.');
+    });
+
+    if ($(location).attr('href') == 'http://localhost/Project/pu/Ahsp4/tambah') { 
+        $(document).ready(function(){
+            $('#kode4').val($('select#kode3').val() + '.'); 
+        });
+    }    
