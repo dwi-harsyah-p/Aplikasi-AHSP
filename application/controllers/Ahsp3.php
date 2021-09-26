@@ -56,16 +56,22 @@ class Ahsp3 extends CI_Controller
         }
     }
 
-    public function hapus($id)
+    public function hapus($id = null)
     {
-        $this->Ahsp_model->hapus('ahsp_level_3', $id);
-        $this->session->set_flashdata('flash', 'Dihapus');
-        redirect($_SERVER['HTTP_REFERER']);
+        $data['cekid'] = $this->Ahsp_model->getTablewhere('ahsp_level_3', 'id', $id)->num_rows();
+        if ($id == null || $data['cekid'] < 1) {
+            redirect('ahsp3');
+        } else {
+            $this->Ahsp_model->hapus('ahsp_level_3', $id);
+            $this->session->set_flashdata('flash', 'Dihapus');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
 
     public function edit($id = null)
     {
-        if ($id == null) {
+        $data['cekid'] = $this->Ahsp_model->getTablewhere('ahsp_level_3', 'id', $id)->num_rows();
+        if ($id == null || $data['cekid'] < 1) {
             redirect('ahsp3');
         } else {
             $data['ahsp'] = $this->Ahsp_model->getTablewhere('ahsp_level_3', 'id', $id)->row_array();
