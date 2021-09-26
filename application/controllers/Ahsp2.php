@@ -58,9 +58,18 @@ class Ahsp2 extends CI_Controller
 
     public function hapus($id)
     {
-        $this->Ahsp_model->hapus('ahsp_level_2', $id);
-        $this->session->set_flashdata('flash', 'Dihapus');
-        redirect($_SERVER['HTTP_REFERER']);
+        $lv2 = $this->Ahsp_model->getTablewhere('ahsp_level_2', 'id', $id)->row_array();
+        $lv3 = $this->Ahsp_model->getTablewhere('ahsp_level_3', 'kode_lvl_2', $lv2['kode_lvl_2']);
+
+        if ($lv3->num_rows() > 0) {
+            $this->session->set_flashdata('row', $lv3->num_rows);
+            $this->session->set_userdata('kode', $lv2['kode_lvl_2']);
+            redirect('ahsp3');
+        } else {
+            $this->Ahsp_model->hapus('ahsp_level_3', $id);
+            $this->session->set_flashdata('flash', 'Dihapus');
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
 
     public function edit($id = null)

@@ -54,3 +54,13 @@ const flashData = $('.flash-data').data('flashdata');
             $('#kode2').val($('select#kode1').val() + '.'); 
         });
     }    
+
+    $('select#kode2').on('change', function() {
+        $('#kode3').val($(this).val() + '.');
+    });
+
+    if ($(location).attr('href') == 'http://localhost/Project/pu/Ahsp3/tambah') { 
+        $(document).ready(function(){
+            $('#kode3').val($('select#kode2').val() + '.'); 
+        });
+    }    
