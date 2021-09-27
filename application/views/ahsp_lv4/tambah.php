@@ -1,24 +1,23 @@
-<div class="flash-pesan" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
 <div class="container">
     <div class="m-auto">
         <div class="card shadow mb-4">
             <div class="card-body col-lg-7 m-auto">
-                <h3 class="text-center">Level 2</h3>
+                <h3 class="text-center">Level 4</h3>
                 <form action="" method="post">
                     <div class="form-group">
-                        <label for="kode1">Kode Level 1</label>
-                        <select name="kode1" id="kode1" class="form-select">
+                        <label for="kode3">Kode Level 3</label>
+                        <select name="kode3" id="kode3" class="form-select">
                             <?php
                             foreach ($ahsp as $key => $data) { ?>
-                                <option value="<?= $data['kode_lvl_1'] ?>"><?= $data['kode_lvl_1'] . ' ' . $data['uraian'] ?></option>
+                                <option value="<?= $data['kode_lvl_3'] ?>"><?= $data['kode_lvl_3'] . ' ' . $data['uraian'] ?></option>
                             <?php } ?>
                         </select>
-                        <small class="form-text text-danger"><?= form_error('kode1') ?></small>
+                        <small class="form-text text-danger"><?= form_error('kode3') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="kode2">Kode Level 2</label>
-                        <input type="text" class="form-control" id="kode2" name="kode2" value="<?= set_value('kode2'); ?>" autocomplete="off">
-                        <small class="form-text text-danger"><?= form_error('kode2') ?></small>
+                        <label for="kode4">Kode Level 4</label>
+                        <input type="text" class="form-control" id="kode4" name="kode4" value="<?= set_value('kode4'); ?>" autocomplete="off">
+                        <small class="form-text text-danger"><?= form_error('kode4') ?></small>
                     </div>
                     <div class="form-group">
                         <label for="uraian">Uraian</label>

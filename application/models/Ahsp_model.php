@@ -19,6 +19,22 @@ class Ahsp_model extends CI_Model
             ];
 
             return $this->db->insert($table, $data);
+        } elseif ($table == 'ahsp_level_3') {
+            $data = [
+                'kode_lvl_2' => htmlspecialchars($this->input->post('kode2')),
+                'kode_lvl_3' => htmlspecialchars($this->input->post('kode3')),
+                'uraian' => htmlspecialchars($this->input->post('uraian'))
+            ];
+
+            return $this->db->insert($table, $data);
+        } elseif ($table == 'ahsp_level_4') {
+            $data = [
+                'kode_lvl_3' => htmlspecialchars($this->input->post('kode3')),
+                'kode_lvl_4' => htmlspecialchars($this->input->post('kode4')),
+                'uraian' => htmlspecialchars($this->input->post('uraian'))
+            ];
+
+            return $this->db->insert($table, $data);
         }
     }
 
@@ -55,6 +71,20 @@ class Ahsp_model extends CI_Model
                 'uraian' => htmlspecialchars($this->input->post('uraian'))
             ];
             $this->db->update('ahsp_level_2', $data, ['id' => $this->input->post('id', true)]);
+        } elseif ($table == 'ahsp_level_3') {
+            $data = [
+                'kode_lvl_2' => htmlspecialchars($this->input->post('kode2')),
+                'kode_lvl_3' => htmlspecialchars($this->input->post('kode3')),
+                'uraian' => htmlspecialchars($this->input->post('uraian'))
+            ];
+            $this->db->update('ahsp_level_3', $data, ['id' => $this->input->post('id', true)]);
+        } elseif ($table == 'ahsp_level_4') {
+            $data = [
+                'kode_lvl_3' => htmlspecialchars($this->input->post('kode3')),
+                'kode_lvl_4' => htmlspecialchars($this->input->post('kode4')),
+                'uraian' => htmlspecialchars($this->input->post('uraian'))
+            ];
+            $this->db->update('ahsp_level_4', $data, ['id' => $this->input->post('id', true)]);
         }
     }
 
