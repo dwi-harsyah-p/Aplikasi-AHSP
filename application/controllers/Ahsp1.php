@@ -7,9 +7,12 @@ class Ahsp1 extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!$this->session->userdata('nip')) {
+            redirect('auth');
+        }
         $this->load->model('Ahsp_model');
         $this->load->library('form_validation');
-        $this->session->unset_userdata('kode');
+        // $this->session->unset_userdata('kode');
     }
 
     public function index()

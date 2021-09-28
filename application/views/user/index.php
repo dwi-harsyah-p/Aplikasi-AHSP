@@ -32,6 +32,7 @@
                                                     <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Jenis Kelamin: </p>                                                
                                                     <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Tanggal Lahir: </p>
                                                     <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Alamat: </p>
+                                                    <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 " >No. Telp: </p>
                                                     
                                                      <div class="clearfix"></div>
 
@@ -75,6 +76,11 @@
                                                 <div class="form-group m-0">
                                                     <label for="profilePhoto" name="name"  class="m-1">Alamat </label>
                                                     <input type="text" name="name" id="name" class="form-control" value="" >
+                                                </div>
+
+                                                <div class="form-group m-0">
+                                                    <label for="phone" name="name"  class="m-1">No. Telp</label>
+                                                    <input type="tel" name="phone" id="iphone" class="form-control" value="" >
                                                 </div>
 
                                                 <div class="form-group mt-2">
