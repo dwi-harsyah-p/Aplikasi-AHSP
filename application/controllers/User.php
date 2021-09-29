@@ -8,7 +8,6 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Ahsp_model');
-
         if (!$this->session->userdata('nip')) {
             redirect('auth');
         }
@@ -20,7 +19,7 @@ class User extends CI_Controller
         $data['judul'] = 'User Profile';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $nip)->row_array();
         $this->load->view('templates/header', $data);
-        $this->load->view('user/index');
+        $this->load->view('user/index', $data);
         $this->load->view('templates/footer', $data);
     }
 }

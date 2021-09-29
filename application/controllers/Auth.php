@@ -13,7 +13,7 @@ class Auth extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('nip')) {
-            redirect('user');
+            redirect('home');
         }
         $this->form_validation->set_rules('nip', 'NIP', 'required|trim', ['required' => '{field} harus diisi']);
         $this->form_validation->set_rules('password', 'Password', 'required|trim', ['required' => '{field} harus diisi']);

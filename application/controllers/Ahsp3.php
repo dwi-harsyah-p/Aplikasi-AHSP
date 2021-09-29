@@ -48,9 +48,16 @@ class Ahsp3 extends CI_Controller
             $data['judul'] = 'Insert AHSP Level 3';
 
             if ($this->form_validation->run() == false) {
-                $this->load->view('templates/header', $data);
-                $this->load->view('ahsp_lv3/tambah', $data);
-                $this->load->view('templates/footer', $data);
+                if ($this->form_validation->run() == false && $this->input->post('kode2') . '.' == $this->input->post('kode3')) {
+                    $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('ahsp_lv3/tambah', $data);
+                    $this->load->view('templates/footer', $data);
+                } else {
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('ahsp_lv3/tambah', $data);
+                    $this->load->view('templates/footer', $data);
+                }
             } else {
                 $this->Ahsp_model->tambah('ahsp_level_3');
                 $this->session->set_flashdata('flash', 'Ditambahkan');

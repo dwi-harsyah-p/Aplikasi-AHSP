@@ -18,7 +18,12 @@
                     <div class="form-group">
                         <label for="kode2">Kode Level 2</label>
                         <input type="text" class="form-control" id="kode2" name="kode2" value="<?= set_value('kode2'); ?>" autocomplete="off">
-                        <small class="form-text text-danger"><?= form_error('kode2') ?></small>
+                        <?php if (form_error('kode2')) { ?>
+                            <small class="form-text text-danger"><?= form_error('kode2'); ?></small>
+                        <?php } else {
+                            echo $this->session->userdata('err');
+                            $this->session->unset_userdata('err');
+                        } ?>
                     </div>
                     <div class="form-group">
                         <label for="uraian">Uraian</label>
