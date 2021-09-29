@@ -29,7 +29,13 @@
                             <div class="form-group">
                                 <label for="kode4">Kode Level 4</label>
                                 <input type="text" class="form-control" id="kode4" name="kode4" value="<?= $ahsp['kode_lvl_4']; ?>" autocomplete="off">
-                                <small class="form-text text-danger"><?= form_error('kode4') ?></small>
+                                <?php if (form_error('kode4')) { ?>
+                                    <small class="form-text text-danger"><?= form_error('kode4'); ?></small>
+                                <?php } else {
+                                    echo $this->session->userdata('err');
+                                    $this->session->unset_userdata('err');
+                                } ?>
+
                             </div>
                             <div class="form-group">
                                 <label for="uraian">Uraian</label>

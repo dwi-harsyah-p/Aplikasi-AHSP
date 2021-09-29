@@ -105,6 +105,18 @@ class Ahsp2 extends CI_Controller
             ]);
             $data['judul'] = 'Edit Data Ahsp2';
             if ($this->form_validation->run() == false) {
+                if ($this->form_validation->run() == false && $this->input->post('kode1') . '.' == $this->input->post('kode2')) {
+                    $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('ahsp_lv2/edit', $data);
+                    $this->load->view('templates/footer', $data);
+                } else {
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('ahsp_lv2/edit', $data);
+                    $this->load->view('templates/footer', $data);
+                }
+            } elseif ($this->input->post('kode1') . '.' == $this->input->post('kode2')) {
+                $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
                 $this->load->view('templates/header', $data);
                 $this->load->view('ahsp_lv2/edit', $data);
                 $this->load->view('templates/footer', $data);
