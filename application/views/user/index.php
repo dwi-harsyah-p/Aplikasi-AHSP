@@ -21,11 +21,11 @@
                               <div class="card-deck">
                                   <div class="card border-primary">
                                       <div class="card-harder bg-primary text-light text-center lead">
-                                          Admin
+                                          User
                                       </div>
                                       <div class="card-body center">
                                           <div class="text-center">
-                                              <img src="img/undraw_profile.svg" alt="" width="150px">
+                                              <img src="<?= base_url('assets/'); ?>img/undraw_profile.svg" alt="" width="150px">
                                           </div>
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">NIP: <?= $user['nip']; ?> </p>
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Nama: <?= $user['nama']; ?></p>
@@ -52,7 +52,6 @@
                                               <label for="profilePhoto" name="image" id="profilePhoto" class="m-1">Upload Profile Picture</label>
                                               <input type="file" name="image" id=profilePhoto>
                                           </div>
-
                                           <div class="form-group m-0">
                                               <label for="profilePhoto" name="name" class="m-1">Nama </label>
                                               <input type="text" name="name" id="name" class="form-control" value="">
@@ -65,34 +64,27 @@
                                                   <option value="perempuan">Perempuan</option>
                                               </select>
                                           </div>
-
                                           <div class="form-group m-0">
                                               <label for="ttl" class="m-1">Tanggal Lahir</label>
                                               <input id="ttl" type="date" name="ttl" value="" class="form-control">
                                           </div>
-
-
-
                                           <div class="form-group m-0">
                                               <label for="profilePhoto" name="name" class="m-1">Alamat </label>
                                               <input type="text" name="name" id="name" class="form-control" value="">
                                           </div>
-
                                           <div class="form-group m-0">
                                               <label for="phone" name="name" class="m-1">No. Telp</label>
                                               <input type="tel" name="phone" id="iphone" class="form-control" value="">
                                           </div>
-
                                           <div class="form-group mt-2">
                                               <input type="submit" name="profile_update" value="Update Profile " class=" btn-success btn-block" id="profileUpdateBtn">
                                           </div>
-
-
                                       </form>
                                   </div>
                               </div>
                           </div>
                           <!-- Edit content end -->
+
                       </div>
                   </div>
               </div>

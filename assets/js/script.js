@@ -7,7 +7,27 @@ const flashData = $('.flash-data').data('flashdata');
             icon: 'success'
         });
     }
-    const row = $('.flash-delete').data('flashdata');
+
+const flashpass = $('.flash-pass').data('flashdata');
+
+    if (flashpass) {
+        swal({
+            title: 'Change Password',
+            text: 'Berhasil ' + flashpass,
+            icon: 'success'
+        });
+    }
+
+const flashpasspesan = $('.flash-passpesan').data('flashdata');
+
+    if (flashpasspesan) {
+        swal({
+            title: 'Change Password',
+            text: flashpasspesan,
+            icon: 'error'
+        });
+    }
+const row = $('.flash-delete').data('flashdata');
 
     if (row) {
         swal({
@@ -17,7 +37,7 @@ const flashData = $('.flash-data').data('flashdata');
         });
     }
 
-    const msg = $('.flash-pesan').data('flashdata');
+const msg = $('.flash-pesan').data('flashdata');
 
     if (msg) {
         swal({
