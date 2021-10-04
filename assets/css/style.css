@@ -1,24 +1,52 @@
+/* Style Login */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.header-login {
+	margin-left: 60px;
+}
+
+.card {
+	border-top: 1px solid #0d6efd;
+}
+
+.logo {
+	float: left;
+}
+
+.logo-text {
+	padding: 5px 10px;
+}
+
+.footer {
+	margin-top: 80px;
+}
+
+/*End Style Login */
+
 .transition {
-    transition: 0.5s;
+	transition: 0.5s;
 }
 
 .displayblock {
-    display: block;
+	display: block;
 }
 
 .displaynone {
-    display: none;
+	display: none;
 }
 
 .color-red {
-    color: #b70000;
+	color: #b70000;
 }
 
 .color-blue {
-    color: rgba(0, 81, 255, 0.781);
+	color: rgba(0, 81, 255, 0.781);
 }
 
 a {
-    text-decoration: none;
-    cursor: pointer;
+	text-decoration: none;
+	cursor: pointer;
 }
