@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Okt 2021 pada 06.34
+-- Waktu pembuatan: 04 Okt 2021 pada 11.20
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -139,6 +139,7 @@ CREATE TABLE `biodata` (
   `nama` varchar(128) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `jenis_kelamin` varchar(128) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `alamat` varchar(128) NOT NULL,
   `no_telp` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -147,8 +148,8 @@ CREATE TABLE `biodata` (
 -- Dumping data untuk tabel `biodata`
 --
 
-INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `no_telp`) VALUES
-(1, '123', 'Valent', '2021-09-01', 'Laki-laki', 'Pakri 1', '08123456789');
+INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image`, `alamat`, `no_telp`) VALUES
+(1, '123', 'Valent', '2002-02-10', 'Laki-laki', '3122700-200.png', 'Pakri 1 no. 103', '082376287800');
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$PvS8KkeRTza7bCCa0uVBGeR7NCZHZQzic0pdFk0rysxkyTWhCITlO', 1, 1, 0);
+(1, '123', '$2y$10$q39SXFby2DLOWGcGEIrMNupH4LHlJ31NWKNHaJ21OcKZGndTTfocC', 1, 1, 0);
 
 -- --------------------------------------------------------
 
