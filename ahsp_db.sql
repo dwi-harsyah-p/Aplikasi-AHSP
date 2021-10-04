@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Sep 2021 pada 08.59
+-- Waktu pembuatan: 04 Okt 2021 pada 06.34
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -143,6 +143,13 @@ CREATE TABLE `biodata` (
   `no_telp` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `biodata`
+--
+
+INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `no_telp`) VALUES
+(1, '123', 'Valent', '2021-09-01', 'Laki-laki', 'Pakri 1', '08123456789');
+
 -- --------------------------------------------------------
 
 --
@@ -163,7 +170,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$pB0jsMPjk222.D9jZS2IeuOpPdBph0cgbu4HMssVLEOc9sDc/oK9C', 1, 1, 0);
+(1, '123', '$2y$10$PvS8KkeRTza7bCCa0uVBGeR7NCZHZQzic0pdFk0rysxkyTWhCITlO', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -215,6 +222,12 @@ ALTER TABLE `ahsp_level_4`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `biodata`
+--
+ALTER TABLE `biodata`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
@@ -240,19 +253,25 @@ ALTER TABLE `ahsp_level_1`
 -- AUTO_INCREMENT untuk tabel `ahsp_level_2`
 --
 ALTER TABLE `ahsp_level_2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_3`
 --
 ALTER TABLE `ahsp_level_3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_4`
 --
 ALTER TABLE `ahsp_level_4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `biodata`
+--
+ALTER TABLE `biodata`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
