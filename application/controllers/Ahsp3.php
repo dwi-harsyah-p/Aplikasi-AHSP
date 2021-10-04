@@ -10,8 +10,6 @@ class Ahsp3 extends CI_Controller
         if (!$this->session->userdata('nip')) {
             redirect('auth');
         }
-        $this->load->model('Ahsp_model');
-        $this->load->library('form_validation');
     }
 
     public function index()
@@ -24,6 +22,7 @@ class Ahsp3 extends CI_Controller
             $data['ahsp'] = $this->Ahsp_model->getTable('ahsp_level_3', 'kode_lvl_3')->result_array();
         }
         $data['judul'] = 'Ahsp3';
+        $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('ahsp_lv3/index', $data);
         $this->load->view('templates/footer', $data);
@@ -46,7 +45,7 @@ class Ahsp3 extends CI_Controller
                 'required' => '{field} harus diisi'
             ]);
             $data['judul'] = 'Insert AHSP Level 3';
-
+            $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
             if ($this->form_validation->run() == false) {
                 if ($this->form_validation->run() == false && $this->input->post('kode2') . '.' == $this->input->post('kode3')) {
                     $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
@@ -58,6 +57,11 @@ class Ahsp3 extends CI_Controller
                     $this->load->view('ahsp_lv3/tambah', $data);
                     $this->load->view('templates/footer', $data);
                 }
+            } elseif ($this->input->post('kode2') . '.' == $this->input->post('kode3')) {
+                $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
+                $this->load->view('templates/header', $data);
+                $this->load->view('ahsp_lv3/tambah', $data);
+                $this->load->view('templates/footer', $data);
             } else {
                 $this->Ahsp_model->tambah('ahsp_level_3');
                 $this->session->set_flashdata('flash', 'Ditambahkan');
@@ -104,6 +108,7 @@ class Ahsp3 extends CI_Controller
                 'required' => '{field} harus diisi'
             ]);
             $data['judul'] = 'Edit Data Ahsp3';
+            $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
             if ($this->form_validation->run() == false) {
                 if ($this->form_validation->run() == false && $this->input->post('kode2') . '.' == $this->input->post('kode3')) {
                     $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');

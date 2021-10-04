@@ -30,7 +30,7 @@
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">NIP: <?= $user['nip']; ?> </p>
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Nama: <?= $user['nama']; ?></p>
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Jenis Kelamin: <?= $user['jenis_kelamin']; ?></p>
-                                          <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Tanggal Lahir: <?= $user['tgl_lahir']; ?></p>
+                                          <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Tanggal Lahir: <?= date('d-M-Y', strtotime($user['tgl_lahir'])); ?></p>
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Alamat: <?= $user['alamat']; ?></p>
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">No. Telp: <?= $user['no_telp']; ?></p>
 

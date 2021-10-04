@@ -18,6 +18,7 @@ class User extends CI_Controller
     {
         $nip = $this->session->userdata('nip');
         $data['judul'] = 'User Profile';
+        $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
         $data['user'] = $this->User_model->getTablewhere('biodata', 'nip', $nip)->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('user/index', $data);
@@ -28,6 +29,7 @@ class User extends CI_Controller
     {
         $nip = $this->session->userdata('nip');
         $data['judul'] = 'Ubah Password';
+        $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
         $data['user'] = $this->User_model->getTablewhere('user', 'nip', $nip)->row_array();
 
         $this->form_validation->set_rules('password', 'Current password', 'required|trim', ['required' => '{field} harus diisi']);

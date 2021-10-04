@@ -52,7 +52,7 @@
     </div>
 
     <div class="footer">
-        <p class="text-center">Copyright</p>
+        <p class="text-center">Copyright&copy;BBWSSVIII2021</p>
     </div>
 
     <script src="<?= base_url('assets/'); ?>js/bootstrap.bundle.min.js"></script>
