@@ -1,4 +1,5 @@
   <!-- Dashboard Content -->
+  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
   <div class="container">
       <div class="row justify-content-center">
           <div class="col-lg-10">
