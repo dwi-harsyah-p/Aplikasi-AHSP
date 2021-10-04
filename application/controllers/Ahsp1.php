@@ -16,7 +16,7 @@ class Ahsp1 extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Ahsp1/index';
-        $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         $data['ahsp_lvl1'] = $this->Ahsp_model->getTable('ahsp_level_1', 'kode_lvl_1')->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('ahsp_lv1/index', $data);
@@ -38,7 +38,7 @@ class Ahsp1 extends CI_Controller
             'required' => '{field} harus diisi'
         ]);
         $data['judul'] = 'Tambah Data Ahsp1';
-        $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('ahsp_lv1/tambah');
@@ -82,7 +82,7 @@ class Ahsp1 extends CI_Controller
             $this->form_validation->set_rules('divisi', 'Divisi', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim', ['required' => '{field} harus diisi']);
             $data['judul'] = 'Edit Data Ahsp1';
-            $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
+            $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             if ($this->form_validation->run() == false) {
                 $this->load->view('templates/header', $data);
                 $this->load->view('ahsp_lv1/edit', $data);

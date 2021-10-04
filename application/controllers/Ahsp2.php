@@ -22,7 +22,7 @@ class Ahsp2 extends CI_Controller
             $data['ahsp'] = $this->Ahsp_model->getTable('ahsp_level_2', 'kode_lvl_2')->result_array();
         }
         $data['judul'] = 'Ahsp2';
-        $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('ahsp_lv2/index', $data);
         $this->load->view('templates/footer', $data);
@@ -45,7 +45,7 @@ class Ahsp2 extends CI_Controller
                 'required' => '{field} harus diisi'
             ]);
             $data['judul'] = 'Insert AHSP Level 2';
-            $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
+            $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             if ($this->form_validation->run() == false) {
                 if ($this->form_validation->run() == false && $this->input->post('kode1') . '.' == $this->input->post('kode2')) {
                     $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
@@ -108,7 +108,7 @@ class Ahsp2 extends CI_Controller
                 'required' => '{field} harus diisi'
             ]);
             $data['judul'] = 'Edit Data Ahsp2';
-            $data['nama'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', '123')->row_array();
+            $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             if ($this->form_validation->run() == false) {
                 if ($this->form_validation->run() == false && $this->input->post('kode1') . '.' == $this->input->post('kode2')) {
                     $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
