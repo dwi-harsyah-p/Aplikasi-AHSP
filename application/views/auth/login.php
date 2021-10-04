@@ -24,12 +24,12 @@
             </div>
             <div class="row">
                 <div class="card p-lg-4">
-                    <!-- <h2 class="text-center">Login</h2> -->
+                    <h2 class="text-center">Login</h2>
                     <?= $this->session->flashdata('massage'); ?>
                     <form class="p-lg-4" action="" method="post">
                         <div class="mb-3">
                             <!-- <label for="exampleInputEmail1" class="form-label">NIP</label> -->
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nip" placeholder="NIP">
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nip" placeholder="NIP/NRP">
                             <small class="form-text text-danger"><?= form_error('nip'); ?></small>
                         </div>
                         <div class="mb-3">
@@ -38,12 +38,12 @@
                             <small class="form-text text-danger"><?= form_error('password'); ?></small>
 
                             <p class="text-end fs-6">
-                                <a href="#">Forgot password ? </a>
+                                <a href="" onclick="alert('Please Remember Your Password!')">Forgot password ? </a>
                             </p>
                         </div>
                         <button type="submit" class="form-control btn btn-primary">LOGIN</button>
 
-                        <p class="text-center">Haven't created an account yet ?<a href="#"> Create account </a></p>
+                        <!-- <p class="text-center">Haven't created an account yet ?<a href="#"> Create account </a></p> -->
 
                     </form>
                 </div>
