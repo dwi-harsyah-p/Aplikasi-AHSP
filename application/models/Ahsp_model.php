@@ -35,6 +35,15 @@ class Ahsp_model extends CI_Model
             ];
 
             return $this->db->insert($table, $data);
+        } elseif ($table == 'bahan') {
+            $data = [
+                'kode' => htmlspecialchars($this->input->post('kode', true)),
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'satuan' => htmlspecialchars($this->input->post('satuan', true)),
+                'harga' => htmlspecialchars($this->input->post('harga', true))
+            ];
+
+            return $this->db->insert($table, $data);
         }
     }
 
@@ -63,28 +72,28 @@ class Ahsp_model extends CI_Model
                 'divisi' => htmlspecialchars($this->input->post('divisi', true)),
                 'uraian' => htmlspecialchars($this->input->post('uraian', true))
             ];
-            $this->db->update('ahsp_level_1', $data, ['id' => $this->input->post('id', true)]);
+            $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         } elseif ($table == 'ahsp_level_2') {
             $data = [
                 'kode_lvl_1' => htmlspecialchars($this->input->post('kode1', true)),
                 'kode_lvl_2' => htmlspecialchars($this->input->post('kode2', true)),
                 'uraian' => htmlspecialchars($this->input->post('uraian', true))
             ];
-            $this->db->update('ahsp_level_2', $data, ['id' => $this->input->post('id', true)]);
+            $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         } elseif ($table == 'ahsp_level_3') {
             $data = [
                 'kode_lvl_2' => htmlspecialchars($this->input->post('kode2', true)),
                 'kode_lvl_3' => htmlspecialchars($this->input->post('kode3', true)),
                 'uraian' => htmlspecialchars($this->input->post('uraian', true))
             ];
-            $this->db->update('ahsp_level_3', $data, ['id' => $this->input->post('id', true)]);
+            $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         } elseif ($table == 'ahsp_level_4') {
             $data = [
                 'kode_lvl_3' => htmlspecialchars($this->input->post('kode3', true)),
                 'kode_lvl_4' => htmlspecialchars($this->input->post('kode4', true)),
                 'uraian' => htmlspecialchars($this->input->post('uraian', true))
             ];
-            $this->db->update('ahsp_level_4', $data, ['id' => $this->input->post('id', true)]);
+            $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         } elseif ($table == 'biodata') {
             $data = [
                 'nama' => htmlspecialchars($this->input->post('nama')),
@@ -93,7 +102,15 @@ class Ahsp_model extends CI_Model
                 'alamat' => htmlspecialchars($this->input->post('alamat')),
                 'no_telp' => htmlspecialchars($this->input->post('phone'))
             ];
-            $this->db->update('biodata', $data, ['nip' => $this->session->userdata('nip')]);
+            $this->db->update($table, $data, ['nip' => $this->session->userdata('nip')]);
+        } elseif ($table == 'bahan') {
+            $data = [
+                'kode' => htmlspecialchars($this->input->post('kode')),
+                'nama' => htmlspecialchars($this->input->post('nama')),
+                'satuan' => htmlspecialchars($this->input->post('satuan')),
+                'harga' => htmlspecialchars($this->input->post('harga')),
+            ];
+            $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         }
     }
 
