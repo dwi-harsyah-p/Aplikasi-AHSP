@@ -38,13 +38,10 @@
                             <small class="form-text text-danger"><?= form_error('password'); ?></small>
 
                             <p class="text-end fs-6">
-                                <a href="" onclick="alert('Please Remember Your Password!')">Forgot password ? </a>
+                                <a onclick="forget();" class="primary">Forgot password ? </a>
                             </p>
                         </div>
                         <button type="submit" class="form-control btn btn-primary">LOGIN</button>
-
-                        <!-- <p class="text-center">Haven't created an account yet ?<a href="#"> Create account </a></p> -->
-
                     </form>
                 </div>
             </div>
@@ -56,6 +53,16 @@
     </div>
 
     <script src="<?= base_url('assets/'); ?>js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function forget() {
+            swal({
+                title: 'Forgot Password?',
+                text: 'Please Remember Your Password!',
+                icon: 'warning'
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -17,6 +17,8 @@ class User extends CI_Controller
     {
         $data['judul'] = 'User Profile';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
+        $data['datauser'] = $this->Ahsp_model->getTablewhere('user', 'nip', $this->session->userdata('nip'))->row_array();
+
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim', ['required' => '{field} harus diisi']);
         $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim', ['required' => '{field} harus diisi']);
         $this->form_validation->set_rules('ttl', 'Tanggal Lahir', 'required|trim', ['required' => '{field} harus diisi']);

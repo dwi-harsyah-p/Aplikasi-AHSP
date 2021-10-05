@@ -24,9 +24,11 @@
                                       <div class="card-harder bg-primary text-light text-center lead">
                                           User
                                       </div>
+                                      <span>Bergabung Sejak <?= date('d F Y', $datauser['date_created']); ?></span>
                                       <div class="card-body center">
                                           <div class="text-center">
                                               <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" alt="" width="150px">
+
                                           </div>
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">NIP: <?= $user['nip']; ?> </p>
                                           <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Nama: <?= $user['nama']; ?></p>
