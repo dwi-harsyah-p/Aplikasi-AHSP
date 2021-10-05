@@ -17,9 +17,9 @@
             <div class="row header p-lg-4 py-4">
                 <div class="header-login p-lg-2 ">
                     <img src="<?= base_url('assets/'); ?>img/Logo_PU.jpg" class="logo me-3" width="20%">
-                    <h4 class="logo-text fs-4">BBWS SUMATERA VIII</h4>
+                    <h4 class="logo-text fs-6">BBWS SUMATERA VIII</h4>
                     <!-- <h4 class="logo-text fs-6">DIREKTORAT JENDRAL SUMBER DAYA AIR</h4> -->
-                    <h4 class="logo-text fs-5">KEMENTERIAN PEKERJAAN UMUM DAN PERUMAHAN RAKYAT</h4>
+                    <h4 class="logo-text fs-6">KEMENTERIAN PEKERJAAN UMUM DAN PERUMAHAN RAKYAT</h4>
                 </div>
             </div>
             <div class="row">

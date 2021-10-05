@@ -17,11 +17,7 @@
 @media screen and (max-width : 576px) {
 	.logo-text {
 		color: darkorange;
-		font-size: 1rem;
-	}
-
-	.row {
-		background-color: darkorchid;
+		font-size: 0.9rem;
 	}
 
 	.logo {
@@ -38,17 +34,12 @@
 	padding: 0;
 }
 
-.row {
-	background-color: darkorchid;
-}
-
 .header-login {
 	padding: 40px;
 }
 
 .header-login h4 {
 	color: rgb(250, 175, 36);
-	
 }
 
 .card {
