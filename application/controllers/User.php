@@ -7,7 +7,6 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('User_model');
         $this->load->library('form_validation');
         if (!$this->session->userdata('nip')) {
             redirect('auth');
@@ -16,19 +15,55 @@ class User extends CI_Controller
 
     public function index()
     {
-        $nip = $this->session->userdata('nip');
         $data['judul'] = 'User Profile';
-        $data['user'] = $this->User_model->getTablewhere('biodata', 'nip', $nip)->row_array();
-        $this->load->view('templates/header', $data);
-        $this->load->view('user/index', $data);
-        $this->load->view('templates/footer', $data);
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
+        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', ['required' => '{field} harus diisi']);
+        $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim', ['required' => '{field} harus diisi']);
+        $this->form_validation->set_rules('ttl', 'Tanggal Lahir', 'required|trim', ['required' => '{field} harus diisi']);
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', ['required' => '{field} harus diisi']);
+        $this->form_validation->set_rules('phone', 'Nomor Telepon', 'required|trim|numeric', [
+            'required' => '{field} harus diisi',
+            'numeric' => '{field} harus angka'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('user/index', $data);
+            $this->load->view('templates/footer', $data);
+        } else {
+
+            //cek jikka ada gambar yang akan di upload
+            $upload_image = $_FILES['image']['name'];
+
+            if ($upload_image) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                // $config['max_size']      = '2048';
+                $config['upload_path'] = './assets/img/profile/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image')) {
+                    $old_image = $data['user']['image'];
+                    if ($old_image != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/profile/' . $old_image);
+                    }
+
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            $this->Ahsp_model->edit('biodata');
+            $this->session->set_flashdata('flash', 'Diubah');
+            redirect('user');
+        }
     }
 
     public function changepassword()
     {
-        $nip = $this->session->userdata('nip');
         $data['judul'] = 'Ubah Password';
-        $data['user'] = $this->User_model->getTablewhere('user', 'nip', $nip)->row_array();
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
 
         $this->form_validation->set_rules('password', 'Current password', 'required|trim', ['required' => '{field} harus diisi']);
         $this->form_validation->set_rules('newpassword', 'New password', 'required|trim|min_length[3]', [
@@ -56,7 +91,7 @@ class User extends CI_Controller
                     redirect('user/changepassword');
                 } else {
                     $pass = password_hash($new_pass, PASSWORD_DEFAULT);
-                    $this->User_model->changepassword($pass, $nip);
+                    $this->Ahsp_model->changepassword($pass, $this->session->userdata('nip'));
 
                     $this->session->set_flashdata('pass', 'Ubah Password');
                     redirect('user/changepassword');

@@ -6,8 +6,6 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->library('form_validation');
-        $this->load->model('Ahsp_model');
     }
 
     public function index()
@@ -15,7 +13,7 @@ class Auth extends CI_Controller
         if ($this->session->userdata('nip')) {
             redirect('home');
         }
-        $this->form_validation->set_rules('nip', 'NIP', 'required|trim', ['required' => '{field} harus diisi']);
+        $this->form_validation->set_rules('nip', 'NIP/NRP', 'required|trim', ['required' => '{field} harus diisi']);
         $this->form_validation->set_rules('password', 'Password', 'required|trim', ['required' => '{field} harus diisi']);
 
         if ($this->form_validation->run() == false) {

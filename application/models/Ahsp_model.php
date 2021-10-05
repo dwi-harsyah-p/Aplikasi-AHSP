@@ -85,7 +85,21 @@ class Ahsp_model extends CI_Model
                 'uraian' => htmlspecialchars($this->input->post('uraian', true))
             ];
             $this->db->update('ahsp_level_4', $data, ['id' => $this->input->post('id', true)]);
+        } elseif ($table == 'biodata') {
+            $data = [
+                'nama' => htmlspecialchars($this->input->post('nama')),
+                'tgl_lahir' => htmlspecialchars($this->input->post('ttl')),
+                'jenis_kelamin' => htmlspecialchars($this->input->post('gender')),
+                'alamat' => htmlspecialchars($this->input->post('alamat')),
+                'no_telp' => htmlspecialchars($this->input->post('phone'))
+            ];
+            $this->db->update('biodata', $data, ['nip' => $this->session->userdata('nip')]);
         }
+    }
+
+    public function changepassword($new_pass, $nip)
+    {
+        return $this->db->update('user', ['password' => $new_pass], ['nip' => $nip]);
     }
 
     public function Joinahsp12()

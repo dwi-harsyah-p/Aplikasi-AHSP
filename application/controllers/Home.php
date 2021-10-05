@@ -14,6 +14,7 @@ class Home extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Home';
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('Home');
         $this->load->view('templates/footer');

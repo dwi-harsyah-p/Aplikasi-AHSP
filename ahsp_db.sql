@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Sep 2021 pada 08.59
+-- Waktu pembuatan: 04 Okt 2021 pada 11.20
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -139,9 +139,17 @@ CREATE TABLE `biodata` (
   `nama` varchar(128) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `jenis_kelamin` varchar(128) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `alamat` varchar(128) NOT NULL,
   `no_telp` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `biodata`
+--
+
+INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image`, `alamat`, `no_telp`) VALUES
+(1, '123', 'Valent', '2002-02-10', 'Laki-laki', '3122700-200.png', 'Pakri 1 no. 103', '082376287800');
 
 -- --------------------------------------------------------
 
@@ -163,7 +171,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$pB0jsMPjk222.D9jZS2IeuOpPdBph0cgbu4HMssVLEOc9sDc/oK9C', 1, 1, 0);
+(1, '123', '$2y$10$q39SXFby2DLOWGcGEIrMNupH4LHlJ31NWKNHaJ21OcKZGndTTfocC', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -215,6 +223,12 @@ ALTER TABLE `ahsp_level_4`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `biodata`
+--
+ALTER TABLE `biodata`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
@@ -240,19 +254,25 @@ ALTER TABLE `ahsp_level_1`
 -- AUTO_INCREMENT untuk tabel `ahsp_level_2`
 --
 ALTER TABLE `ahsp_level_2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_3`
 --
 ALTER TABLE `ahsp_level_3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_4`
 --
 ALTER TABLE `ahsp_level_4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `biodata`
+--
+ALTER TABLE `biodata`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
