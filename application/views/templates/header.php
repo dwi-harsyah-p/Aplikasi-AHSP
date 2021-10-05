@@ -34,8 +34,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url(); ?>">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                   <img src="assets/img/bbwss.jpg" alt="" width="40px">
                 </div>
                 <div class="sidebar-brand-text mx-3">AHSP</div>
             </a>
