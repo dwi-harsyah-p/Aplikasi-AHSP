@@ -25,8 +25,8 @@
                         foreach ($bahan as $key => $val) { ?>
                             <tr>
                                 <td><?= $no++; ?></td>
-                                <td><?= $val['kode']; ?></td>
                                 <td><?= $val['uraian']; ?></td>
+                                <td><?= $val['kode']; ?></td>
                                 <td><?= $val['satuan']; ?></td>
                                 <td><?= $val['harga']; ?></td>
                                 <td>
