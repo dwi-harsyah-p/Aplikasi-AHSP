@@ -13,9 +13,9 @@
 
 <body>
     <div class="container-fluid">
-        <div class="container col-lg-5">
-            <div class="row header p-lg-4">
-                <div class="header-login p-lg-2">
+        <div class="container col-lg-5 col-md-7 col-sm-9 col-9">
+            <div class="row header p-lg-4 py-4">
+                <div class="header-login p-lg-2 ">
                     <img src="<?= base_url('assets/'); ?>img/Logo_PU.jpg" class="logo me-3" width="20%">
                     <h4 class="logo-text">KEMENTERIAN PEKERJAAN UMUM DAN PERUMAHAN RAKYAT</h4>
                 </div>
