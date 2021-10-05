@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Okt 2021 pada 11.20
+-- Waktu pembuatan: 05 Okt 2021 pada 06.10
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -130,6 +130,27 @@ INSERT INTO `ahsp_level_4` (`id`, `kode_lvl_3`, `kode_lvl_4`, `uraian`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `bahan`
+--
+
+CREATE TABLE `bahan` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(128) NOT NULL,
+  `nama` varchar(128) NOT NULL,
+  `satuan` varchar(128) NOT NULL,
+  `harga` int(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `bahan`
+--
+
+INSERT INTO `bahan` (`id`, `kode`, `nama`, `satuan`, `harga`) VALUES
+(1, 's1', 'Semen', 'Sak', 60000);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `biodata`
 --
 
@@ -149,7 +170,7 @@ CREATE TABLE `biodata` (
 --
 
 INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image`, `alamat`, `no_telp`) VALUES
-(1, '123', 'Valent', '2002-02-10', 'Laki-laki', '3122700-200.png', 'Pakri 1 no. 103', '082376287800');
+(1, '123', 'Dwi Harsyah Prasetya', '2002-02-10', 'Laki-laki', '3122700-200.png', 'Jl. Pakri 1 no. 103 Kel. Duku Kec. Ilir Tim II, Kota Palembang', '082376287800');
 
 -- --------------------------------------------------------
 
@@ -171,7 +192,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$q39SXFby2DLOWGcGEIrMNupH4LHlJ31NWKNHaJ21OcKZGndTTfocC', 1, 1, 0);
+(1, '123', '$2y$10$q39SXFby2DLOWGcGEIrMNupH4LHlJ31NWKNHaJ21OcKZGndTTfocC', 1, 1, 1629985556);
 
 -- --------------------------------------------------------
 
@@ -223,6 +244,12 @@ ALTER TABLE `ahsp_level_4`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `bahan`
+--
+ALTER TABLE `bahan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `biodata`
 --
 ALTER TABLE `biodata`
@@ -248,7 +275,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `ahsp_level_1`
 --
 ALTER TABLE `ahsp_level_1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_2`
@@ -267,6 +294,12 @@ ALTER TABLE `ahsp_level_3`
 --
 ALTER TABLE `ahsp_level_4`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT untuk tabel `bahan`
+--
+ALTER TABLE `bahan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `biodata`
