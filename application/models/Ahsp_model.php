@@ -52,6 +52,14 @@ class Ahsp_model extends CI_Model
             ];
 
             return $this->db->insert($table, $data);
+        } elseif ($table == 'upah') {
+            $data = [
+                'uraian' => htmlspecialchars($this->input->post('uraian', true)),
+                'satuan' => htmlspecialchars($this->input->post('satuan', true)),
+                'harga' => htmlspecialchars($this->input->post('harga', true))
+            ];
+
+            return $this->db->insert($table, $data);
         }
     }
 
@@ -120,6 +128,13 @@ class Ahsp_model extends CI_Model
             ];
             $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         } elseif ($table == 'alat') {
+            $data = [
+                'uraian' => htmlspecialchars($this->input->post('uraian')),
+                'satuan' => htmlspecialchars($this->input->post('satuan')),
+                'harga' => htmlspecialchars($this->input->post('harga')),
+            ];
+            $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
+        } elseif ($table == 'upah') {
             $data = [
                 'uraian' => htmlspecialchars($this->input->post('uraian')),
                 'satuan' => htmlspecialchars($this->input->post('satuan')),

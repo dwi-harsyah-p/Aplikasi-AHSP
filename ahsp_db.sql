@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Okt 2021 pada 10.06
+-- Waktu pembuatan: 05 Okt 2021 pada 11.07
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -195,6 +195,26 @@ INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `upah`
+--
+
+CREATE TABLE `upah` (
+  `id` int(11) NOT NULL,
+  `uraian` varchar(128) NOT NULL,
+  `satuan` varchar(128) NOT NULL,
+  `harga` int(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `upah`
+--
+
+INSERT INTO `upah` (`id`, `uraian`, `satuan`, `harga`) VALUES
+(2, 'Tukang Batu', 'OH', 20000);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `user`
 --
 
@@ -212,7 +232,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$k92EjFJf8Z691dw5cjhq2.66chM6GboKc7OucGFDR3wo.nEskH6O2', 1, 1, 1629985556);
+(1, '123', '$2y$10$QnWHJLDGHjAFvpZRRbQYI.3Rmmi1CQRCF3hvOzne.eR92MAr0qnUO', 1, 1, 1629985556);
 
 -- --------------------------------------------------------
 
@@ -282,6 +302,12 @@ ALTER TABLE `biodata`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `upah`
+--
+ALTER TABLE `upah`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
@@ -325,7 +351,7 @@ ALTER TABLE `ahsp_level_4`
 -- AUTO_INCREMENT untuk tabel `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `bahan`
@@ -338,6 +364,12 @@ ALTER TABLE `bahan`
 --
 ALTER TABLE `biodata`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `upah`
+--
+ALTER TABLE `upah`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
