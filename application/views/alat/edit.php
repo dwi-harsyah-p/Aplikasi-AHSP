@@ -4,25 +4,20 @@
             <div class="card-body col-lg-7 m-auto">
                 <h3 class="text-center">Bahan</h3>
                 <form class="p-4" action="" method="post">
-                    <input type="text" name="id" id="" hidden value="<?= $bahan['id']; ?>">
+                    <input type="text" name="id" id="" hidden value="<?= $alat['id']; ?>">
                     <div class="form-group">
                         <label for="uraian">Uraian</label>
-                        <input type="text" class="form-control" id="uraian" name="uraian" value="<?= $bahan['uraian']; ?>" autocomplete="off">
+                        <input type="text" class="form-control" id="uraian" name="uraian" value="<?= $alat['uraian']; ?>" autocomplete="off">
                         <small class="form-text text-danger"><?= form_error('uraian') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="kode">Kode</label>
-                        <input type="text" class="form-control" id="kode" name="kode" value="<?= $bahan['kode']; ?>" autocomplete="off">
-                        <small class="form-text text-danger"><?= form_error('kode') ?></small>
-                    </div>
-                    <div class="form-group">
                         <label for="satuan">Satuan</label>
-                        <input type="text" class="form-control" id="satuan" name="satuan" value="<?= $bahan['satuan']; ?>" autocomplete="off">
+                        <input type="text" class="form-control" id="satuan" name="satuan" value="<?= $alat['satuan']; ?>" autocomplete="off">
                         <small class="form-text text-danger"><?= form_error('satuan') ?></small>
                     </div>
                     <div class="form-group">
                         <label for="harga">Harga Satuan (Rp)</label>
-                        <input type="number" class="form-control" id="harga" name="harga" value="<?= $bahan['harga']; ?>" autocomplete="off">
+                        <input type="number" class="form-control" id="harga" name="harga" value="<?= $alat['harga']; ?>" autocomplete="off">
                         <small class="form-text text-danger"><?= form_error('harga') ?></small>
                     </div>
                     <button class="btn btn-primary " type="submit" name="edit">Edit</button>

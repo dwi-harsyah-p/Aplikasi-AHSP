@@ -37,8 +37,16 @@ class Ahsp_model extends CI_Model
             return $this->db->insert($table, $data);
         } elseif ($table == 'bahan') {
             $data = [
+                'uraian' => htmlspecialchars($this->input->post('uraian', true)),
                 'kode' => htmlspecialchars($this->input->post('kode', true)),
-                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'satuan' => htmlspecialchars($this->input->post('satuan', true)),
+                'harga' => htmlspecialchars($this->input->post('harga', true))
+            ];
+
+            return $this->db->insert($table, $data);
+        } elseif ($table == 'alat') {
+            $data = [
+                'uraian' => htmlspecialchars($this->input->post('uraian', true)),
                 'satuan' => htmlspecialchars($this->input->post('satuan', true)),
                 'harga' => htmlspecialchars($this->input->post('harga', true))
             ];
@@ -105,8 +113,15 @@ class Ahsp_model extends CI_Model
             $this->db->update($table, $data, ['nip' => $this->session->userdata('nip')]);
         } elseif ($table == 'bahan') {
             $data = [
+                'uraian' => htmlspecialchars($this->input->post('uraian')),
                 'kode' => htmlspecialchars($this->input->post('kode')),
-                'nama' => htmlspecialchars($this->input->post('nama')),
+                'satuan' => htmlspecialchars($this->input->post('satuan')),
+                'harga' => htmlspecialchars($this->input->post('harga')),
+            ];
+            $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
+        } elseif ($table == 'alat') {
+            $data = [
+                'uraian' => htmlspecialchars($this->input->post('uraian')),
                 'satuan' => htmlspecialchars($this->input->post('satuan')),
                 'harga' => htmlspecialchars($this->input->post('harga')),
             ];
