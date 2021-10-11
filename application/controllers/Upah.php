@@ -7,6 +7,7 @@ class Upah extends CI_Controller
     {
         parent::__construct();
         if (!$this->session->userdata('nip')) {
+            $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
             redirect('auth');
         }
     }
