@@ -21,25 +21,41 @@
                           <div class="tab-pane container active" id="profile">
                               <div class="card-deck">
                                   <div class="card border-primary">
-                                      <div class="card-harder bg-primary text-light text-center lead">
-                                          User
-                                      </div>
-                                      <span>Bergabung Sejak <?= date('d F Y', $datauser['date_created']); ?></span>
-                                      <div class="card-body center">
-                                          <div class="text-center">
-                                              <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" alt="" width="150px">
+                                            <div class="card-harder bg-primary text-light text-center lead">
+                                             User
+                                            </div>
 
-                                          </div>
-                                          <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">NIP: <?= $user['nip']; ?> </p>
-                                          <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Nama: <?= $user['nama']; ?></p>
-                                          <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Tanggal Lahir: <?= date('d F Y', strtotime($user['tgl_lahir'])); ?></p>
-                                          <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Jenis Kelamin: <?= $user['jenis_kelamin']; ?></p>
-                                          <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">Alamat: <?= $user['alamat']; ?></p>
-                                          <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #0275d8 ">No. Telp: <?= $user['no_telp']; ?></p>
+                                           <div class="card mb-3" style="max-width: 700px;">
+                                            <div class="row g-0">
+                                                <div class="col-md-4">
+                                                <img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" alt="" width="100%">
+                                                </div>
+                                                <div class="col-md-8">
+                                                <div class="card-body">
+                                                <h5 class="card-text p-2 m-1 rounded" style=""><?= $user['nama']; ?></h5>
+                                                <p class="card-text p-2 m-1 rounded" style="">NIP: <?= $user['nip']; ?> </p>
+                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                                <p class="card-text"><small class="text-muted">Bergabung Sejak <?= date('d F Y', $datauser['date_created']); ?></small></p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                           
 
-                                          <div class="clearfix"></div>
+                                                <div class="row">
+                                                <div class="card p-lg-4">
+                                                    <form class="p-lg-4" action="" method="post">
+                                                        <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #aeaeae ">Tanggal Lahir: <?= date('d F Y', strtotime($user['tgl_lahir'])); ?></p>
+                                                        <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #aeaeae ">Jenis Kelamin: <?= $user['jenis_kelamin']; ?></p>
+                                                        <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #aeaeae ">Alamat: <?= $user['alamat']; ?></p>
+                                                        <p class="card-text p-2 m-1 rounded" style="border-bottom:1px solid #aeaeae ">No. Telp: <?= $user['no_telp']; ?></p>
 
-                                      </div>
+                                                        <div class="clearfix"></div>
+
+                                                     </form>
+                                                </div>
+                                            
+                                        </div>
                                   </div>
                               </div>
                           </div>
