@@ -77,6 +77,20 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#hargasatuan" aria-expanded="true" aria-controls="hargasatuan">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Daftar Harga Satuan</span>
+                </a>
+                <div id="hargasatuan" class="collapse" aria-labelledby="hargasatuan" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a href="<?= base_url('bahan') ?>" id="bahan" class="collapse-item aktif">Bahan</a>
+                        <a href="<?= base_url('alat') ?>" id="alat" class="collapse-item aktif">Alat</a>
+                        <a href="<?= base_url('upah') ?>" id="upah" class="collapse-item aktif">Upah</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
