@@ -9,6 +9,7 @@ class User extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         if (!$this->session->userdata('nip')) {
+            $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
             redirect('auth');
         }
     }
@@ -66,6 +67,7 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Ubah Password';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
+        $data['datauser'] = $this->Ahsp_model->getTablewhere('user', 'nip', $this->session->userdata('nip'))->row_array();
 
         $this->form_validation->set_rules('password', 'Current password', 'required|trim', ['required' => '{field} harus diisi']);
         $this->form_validation->set_rules('newpassword', 'New password', 'required|trim|min_length[3]', [
@@ -84,7 +86,7 @@ class User extends CI_Controller
         } else {
             $cur_pass = $this->input->post('password', true);
             $new_pass = $this->input->post('newpassword', true);
-            if (!password_verify($cur_pass, $data['user']['password'])) {
+            if (!password_verify($cur_pass, $data['datauser']['password'])) {
                 $this->session->set_flashdata('msg', 'Password Salah');
                 redirect('user/changepassword');
             } else {

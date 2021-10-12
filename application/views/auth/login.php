@@ -9,6 +9,11 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.min.css">
     <link href="<?= base_url('assets/'); ?>css/style.css" rel="stylesheet">
+    <style>
+        .swal-text {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,7 +63,7 @@
         function forget() {
             swal({
                 title: 'Forgot Password?',
-                text: 'Please Remember Your Password!',
+                text: 'Please Remember Your Password!\nOr\n Contact Your Administrator!',
                 icon: 'warning'
             });
         }

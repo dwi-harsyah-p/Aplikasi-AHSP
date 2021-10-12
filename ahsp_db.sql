@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Okt 2021 pada 06.10
+-- Waktu pembuatan: 05 Okt 2021 pada 11.07
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -130,13 +130,33 @@ INSERT INTO `ahsp_level_4` (`id`, `kode_lvl_3`, `kode_lvl_4`, `uraian`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `alat`
+--
+
+CREATE TABLE `alat` (
+  `id` int(11) NOT NULL,
+  `uraian` varchar(128) NOT NULL,
+  `satuan` varchar(128) NOT NULL,
+  `harga` int(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `alat`
+--
+
+INSERT INTO `alat` (`id`, `uraian`, `satuan`, `harga`) VALUES
+(2, 'Traktor', 'Unit', 25000000);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `bahan`
 --
 
 CREATE TABLE `bahan` (
   `id` int(11) NOT NULL,
+  `uraian` varchar(128) NOT NULL,
   `kode` varchar(128) NOT NULL,
-  `nama` varchar(128) NOT NULL,
   `satuan` varchar(128) NOT NULL,
   `harga` int(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -145,8 +165,8 @@ CREATE TABLE `bahan` (
 -- Dumping data untuk tabel `bahan`
 --
 
-INSERT INTO `bahan` (`id`, `kode`, `nama`, `satuan`, `harga`) VALUES
-(1, 's1', 'Semen', 'Sak', 60000);
+INSERT INTO `bahan` (`id`, `uraian`, `kode`, `satuan`, `harga`) VALUES
+(1, 'Semen Baturaja', 'SM1', 'Sak', 60000);
 
 -- --------------------------------------------------------
 
@@ -175,6 +195,26 @@ INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `upah`
+--
+
+CREATE TABLE `upah` (
+  `id` int(11) NOT NULL,
+  `uraian` varchar(128) NOT NULL,
+  `satuan` varchar(128) NOT NULL,
+  `harga` int(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `upah`
+--
+
+INSERT INTO `upah` (`id`, `uraian`, `satuan`, `harga`) VALUES
+(2, 'Tukang Batu', 'OH', 20000);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `user`
 --
 
@@ -192,7 +232,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$q39SXFby2DLOWGcGEIrMNupH4LHlJ31NWKNHaJ21OcKZGndTTfocC', 1, 1, 1629985556);
+(1, '123', '$2y$10$QnWHJLDGHjAFvpZRRbQYI.3Rmmi1CQRCF3hvOzne.eR92MAr0qnUO', 1, 1, 1629985556);
 
 -- --------------------------------------------------------
 
@@ -244,6 +284,12 @@ ALTER TABLE `ahsp_level_4`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `alat`
+--
+ALTER TABLE `alat`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `bahan`
 --
 ALTER TABLE `bahan`
@@ -253,6 +299,12 @@ ALTER TABLE `bahan`
 -- Indeks untuk tabel `biodata`
 --
 ALTER TABLE `biodata`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `upah`
+--
+ALTER TABLE `upah`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -296,16 +348,28 @@ ALTER TABLE `ahsp_level_4`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT untuk tabel `alat`
+--
+ALTER TABLE `alat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `bahan`
 --
 ALTER TABLE `bahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `biodata`
 --
 ALTER TABLE `biodata`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `upah`
+--
+ALTER TABLE `upah`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
