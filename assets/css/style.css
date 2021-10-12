@@ -1,3 +1,60 @@
+/* Responsive */
+@media screen and (max-width : 1200px) {
+	.logo-text {
+		color: red;
+		font-size: 1.4rem;
+	}
+}
+
+@media screen and (max-width : 992px) {}
+
+@media screen and (max-width : 768px) {
+	.logo-text {
+		color: blue;
+	}
+}
+
+@media screen and (max-width : 576px) {
+	.logo-text {
+		font-size: 1rem;
+	}
+
+	.header-login {
+		margin-left: 30px;
+	}
+
+	.logo {
+		width: 25%;
+	}
+}
+
+
+/* End responsive */
+
+/* Style Login */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.header-login {
+	padding: 40px;
+}
+
+.header-login h4 {
+	color: rgb(250, 175, 36);
+}
+
+.logo {
+	float: left;
+}
+
+.footer {
+	margin-top: 150px;
+}
+
+/*End Style Login */
+
 .transition {
     transition: 0.5s;
 }
