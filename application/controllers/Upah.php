@@ -53,7 +53,7 @@ class Upah extends CI_Controller
         if ($id == null || $data['cekid'] < 1) {
             redirect('upah');
         } else {
-            $this->Ahsp_model->hapus('upah', $id);
+            $this->Ahsp_model->hapus('upah', 'id', $id);
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect($_SERVER['HTTP_REFERER']);
         }

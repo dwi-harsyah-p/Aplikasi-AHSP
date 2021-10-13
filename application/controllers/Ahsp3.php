@@ -85,7 +85,7 @@ class Ahsp3 extends CI_Controller
                 $this->session->set_userdata('kode3', $lv3['kode_lvl_3']);
                 redirect('ahsp4');
             } else {
-                $this->Ahsp_model->hapus('ahsp_level_3', $id);
+                $this->Ahsp_model->hapus('ahsp_level_3', 'id', $id);
                 $this->session->set_flashdata('flash', 'Dihapus');
                 redirect($_SERVER['HTTP_REFERER']);
             }

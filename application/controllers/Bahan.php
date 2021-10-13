@@ -58,7 +58,7 @@ class Bahan extends CI_Controller
         if ($id == null || $data['cekid'] < 1) {
             redirect('bahan');
         } else {
-            $this->Ahsp_model->hapus('bahan', $id);
+            $this->Ahsp_model->hapus('bahan', 'id', $id);
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect($_SERVER['HTTP_REFERER']);
         }

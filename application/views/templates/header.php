@@ -35,7 +35,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url(); ?>">
                 <div class="sidebar-brand-icon">
-                   <img src="assets/img/bbwss.jpg" alt="" width="40px">
+                    <img src="<?= base_url('assets/img/') ?>bbwss.jpg" alt="" width="40px">
                 </div>
                 <div class="sidebar-brand-text mx-3">AHSP</div>
             </a>
@@ -140,7 +140,7 @@
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a href="<?= base_url('user'); ?>" class="dropdown-item" href="#">
+                                <a href="<?= base_url('user/profile'); ?>" class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
                                 </a>
                                 <a href="<?= base_url('user/changepassword'); ?>" class="dropdown-item" href="#">

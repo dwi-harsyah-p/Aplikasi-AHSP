@@ -53,7 +53,7 @@ class Alat extends CI_Controller
         if ($id == null || $data['cekid'] < 1) {
             redirect('alat');
         } else {
-            $this->Ahsp_model->hapus('alat', $id);
+            $this->Ahsp_model->hapus('alat', 'id', $id);
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect($_SERVER['HTTP_REFERER']);
         }

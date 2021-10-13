@@ -77,7 +77,7 @@ class Ahsp4 extends CI_Controller
         if ($id == null || $data['cekid'] < 1) {
             redirect('ahsp4');
         } else {
-            $this->Ahsp_model->hapus('ahsp_level_4', $id);
+            $this->Ahsp_model->hapus('ahsp_level_4', 'id', $id);
             $this->session->set_flashdata('flash', 'Dihapus');
             redirect($_SERVER['HTTP_REFERER']);
         }
