@@ -10,8 +10,10 @@ class User extends CI_Controller
         $this->load->library('form_validation');
         if (!$this->session->userdata('nip')) {
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
+            $this->session->set_userdata('re', 'user');
             redirect('auth');
         }
+        $this->session->unset_userdata('re');
     }
 
     public function index()

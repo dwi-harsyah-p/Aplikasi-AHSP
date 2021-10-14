@@ -8,8 +8,10 @@ class Bahan extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('nip')) {
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
+            $this->session->set_userdata('re', 'bahan');
             redirect('auth');
         }
+        $this->session->unset_userdata('re');
     }
 
     public function index()
