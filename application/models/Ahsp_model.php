@@ -81,6 +81,12 @@ class Ahsp_model extends CI_Model
 
             $this->db->insert($table, $datauser);
             return $this->db->insert('biodata', $biouser);
+        } elseif ($table == 'daerah') {
+            $data = [
+                'daerah' => htmlspecialchars($this->input->post('daerah', true)),
+            ];
+
+            return $this->db->insert($table, $data);
         }
     }
 
@@ -172,6 +178,11 @@ class Ahsp_model extends CI_Model
             return $this->db->update($table, $data, ['nip' => $this->input->post('nip', true)]);
         } elseif ($table == 'userpass') {
             return $this->db->update('user', ['password' => password_hash($this->input->post('newpassword', true), PASSWORD_DEFAULT)], ['nip' => $this->input->post('nip', true)]);
+        } elseif ($table == 'daerah') {
+            $data = [
+                'daerah' => htmlspecialchars($this->input->post('daerah', true))
+            ];
+            return $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         }
     }
 
