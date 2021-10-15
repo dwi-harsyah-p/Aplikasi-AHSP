@@ -76,6 +76,7 @@ class Ahsp_model extends CI_Model
                 'jenis_kelamin' => '',
                 'image' => 'default.jpg',
                 'alamat' => '',
+                'id_daerah' => htmlspecialchars($this->input->post('daerah', true)),
                 'no_telp' => ''
             ];
 
@@ -144,6 +145,7 @@ class Ahsp_model extends CI_Model
                 'tgl_lahir' => htmlspecialchars($this->input->post('ttl', true)),
                 'jenis_kelamin' => htmlspecialchars($this->input->post('gender', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'id_daerah' => htmlspecialchars($this->input->post('daerah', true)),
                 'no_telp' => htmlspecialchars($this->input->post('phone', true))
             ];
             $this->db->update($table, $data, ['nip' => $this->input->post('nipcek', true)]);
@@ -193,7 +195,7 @@ class Ahsp_model extends CI_Model
 
     public function joinuser()
     {
-        $query = "SELECT user.nip, nama, password, role, is_active, date_created FROM user INNER JOIN user_role ON user_role.id = user.role_id INNER JOIN biodata on biodata.nip = user.nip";
+        $query = "SELECT user.nip, nama, password, daerah, role, is_active, date_created FROM user INNER JOIN user_role ON user_role.id = user.role_id INNER JOIN biodata on biodata.nip = user.nip INNER JOIN daerah ON daerah.id=biodata.id_daerah";
         return $this->db->query($query)->result_array();
     }
     public function joinuserwhere($nip)

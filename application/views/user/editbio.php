@@ -11,12 +11,12 @@
                         <input type="file" name="image" id=image>
                     </div>
                     <div class="form-group m-0">
-                        <label for="profilePhoto" name="nip" class="m-1">NIP/NRP </label>
+                        <label for="nip" name="nip" class="m-1">NIP/NRP </label>
                         <input type="text" name="nip" id="nip" class="form-control" value="<?= $datauser['nip']; ?>">
                         <small class="form-text text-danger"><?= form_error('nip'); ?></small>
                     </div>
                     <div class="form-group m-0">
-                        <label for="profilePhoto" name="nama" class="m-1">Nama </label>
+                        <label for="nama" name="nama" class="m-1">Nama </label>
                         <input type="text" name="nama" id="nama" class="form-control" value="<?= $datauser['nama']; ?>">
                         <small class="form-text text-danger"><?= form_error('nama'); ?></small>
                     </div>
@@ -38,11 +38,24 @@
                         </select>
                         <small class="form-text text-danger"><?= form_error('gender'); ?></small>
                     </div>
-
                     <div class="form-group m-0">
-                        <label for="profilePhoto" name="alamat" class="m-1">Alamat </label>
+                        <label for="alamat" name="alamat" class="m-1">Alamat </label>
                         <input type="text" name="alamat" id="alamat" class="form-control" value="<?= $datauser['alamat']; ?>">
                         <small class="form-text text-danger"><?= form_error('alamat'); ?></small>
+                    </div>
+                    <div class="form-group m-0">
+                        <label for="daerah">Daerah</label>
+                        <select name="daerah" id="" class="form-select">
+                            <?php
+                            foreach ($daerah as $key => $daerah) {
+                                if ($daerah['id'] == $datauser['id_daerah']) { ?>
+                                    <option value="<?= $daerah['id']; ?>" selected><?= $daerah['daerah']; ?></option>
+                                <?php } else { ?>
+                                    <option value="<?= $daerah['id']; ?>"><?= $daerah['daerah']; ?></option>
+                            <?php }
+                            } ?>
+                        </select>
+                        <small class="form-text text-danger"><?= form_error('daerah') ?></small>
                     </div>
                     <div class="form-group m-0">
                         <label for="phone" name="name" class="m-1">No. Telp</label>
@@ -50,7 +63,6 @@
                         <small class="form-text text-danger"><?= form_error('phone'); ?></small>
                     </div>
                     <div class="form-group mt-2">
-                        <!-- <button class=" btn-success btn-block" type="submit">Update Biodata</button> -->
                         <button class="btn btn-primary " type="submit" name="edit">Edit</button>
                     </div>
                 </form>
