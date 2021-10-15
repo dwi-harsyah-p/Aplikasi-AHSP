@@ -10,8 +10,10 @@ class User extends CI_Controller
         $this->load->library('form_validation');
         if (!$this->session->userdata('nip')) {
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
+            $this->session->set_userdata('re', 'user');
             redirect('auth');
         }
+        $this->session->unset_userdata('re');
     }
 
     public function index()
@@ -173,12 +175,13 @@ class User extends CI_Controller
         } else {
             $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             $data['datauser'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $nip)->row_array();
-
+            $data['daerah'] = $this->Ahsp_model->getTable('daerah', 'daerah')->result_array();
             $this->form_validation->set_rules('nama', 'Nama', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('nip', 'NIP/NRP', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('gender', 'Jenis Kelamin', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('ttl', 'Tanggal Lahir', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', ['required' => '{field} harus diisi']);
+            $this->form_validation->set_rules('daerah', 'Daerah', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('phone', 'Nomor Telepon', 'required|trim|numeric', [
                 'required' => '{field} harus diisi',
                 'numeric' => '{field} harus angka'
@@ -225,6 +228,7 @@ class User extends CI_Controller
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         $data['judul'] = 'Tambah Data User';
         $data['role'] = $this->Ahsp_model->getTable('user_role', 'role')->result_array();
+        $data['daerah'] = $this->Ahsp_model->getTable('daerah', 'daerah')->result_array();
         $this->form_validation->set_rules('nip', 'NIP/NRP', 'required|trim|is_unique[user.nip]|is_unique[biodata.nip]', [
             'is_unique' => '{field} sudah ada',
             'required' => '{field} harus diisi'
@@ -236,7 +240,10 @@ class User extends CI_Controller
             'required' => '{field} harus diisi',
             'min_length' => '{field} minimal {param} karakter'
         ]);
-        $this->form_validation->set_rules('role', 'role', 'required|trim', [
+        $this->form_validation->set_rules('daerah', 'Daerah', 'required|trim', [
+            'required' => '{field} harus diisi'
+        ]);
+        $this->form_validation->set_rules('role', 'Role', 'required|trim', [
             'required' => '{field} harus diisi'
         ]);
         $this->form_validation->set_rules('active', 'active', 'required|trim', [

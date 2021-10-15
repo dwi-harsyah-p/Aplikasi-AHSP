@@ -14,6 +14,7 @@
                              <th>NIP/NRP</th>
                              <th>Nama</th>
                              <th>Password</th>
+                             <th>Daerah</th>
                              <th>Role</th>
                              <th>Active</th>
                              <th>Date Created</th>
@@ -33,7 +34,7 @@
                                      <?= $val['nip']; ?>
                                  </td>
                                  <td>
-                                     <?php echo substr($val['nama'], 0, 10) . '...';
+                                     <?php echo substr($val['nama'], 0);
                                         if ($val['nip'] != $this->session->userdata['nip']) { ?>
                                          <a href="<?= base_url('user/editbio/') . $val['nip']; ?>">
                                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="color-blue bi bi-pencil-square" viewBox="0 0 16 16">
@@ -53,6 +54,9 @@
                                              </svg>
                                          </a>
                                      <?php } ?>
+                                 </td>
+                                 <td>
+                                     <?= $val['daerah']; ?>
                                  </td>
                                  <td>
                                      <?= $val['role']; ?>

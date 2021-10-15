@@ -20,6 +20,17 @@
                         <small class="form-text text-danger"><?= form_error('password') ?></small>
                     </div>
                     <div class="form-group">
+                        <label for="daerah">Daerah</label>
+                        <select name="daerah" id="" class="form-select">
+                            <?php
+                            foreach ($daerah as $key => $daerah) {
+                            ?>
+                                <option value="<?= $daerah['id']; ?>"><?= $daerah['daerah']; ?></option>
+                            <?php } ?>
+                        </select>
+                        <small class="form-text text-danger"><?= form_error('daerah') ?></small>
+                    </div>
+                    <div class="form-group">
                         <label for="role">role</label>
                         <select name="role" id="" class="form-select">
                             <?php

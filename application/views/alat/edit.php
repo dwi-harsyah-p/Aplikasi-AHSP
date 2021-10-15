@@ -2,7 +2,7 @@
     <div class="m-auto">
         <div class="card shadow mb-4">
             <div class="card-body col-lg-7 m-auto">
-                <h3 class="text-center">Bahan</h3>
+                <h3 class="text-center">Alat</h3>
                 <form class="p-4" action="" method="post">
                     <input type="text" name="id" id="" hidden value="<?= $alat['id']; ?>">
                     <div class="form-group">

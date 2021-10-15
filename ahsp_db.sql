@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Okt 2021 pada 11.07
+-- Waktu pembuatan: 15 Okt 2021 pada 05.23
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -47,8 +47,7 @@ INSERT INTO `ahsp_level_1` (`id`, `kode_lvl_1`, `divisi`, `uraian`) VALUES
 (61, '4', 'Divisi 4', 'Pekerjaan Arsitektur'),
 (62, '5', 'Divisi 5', 'Pekerjaan Mekanikal'),
 (63, '6', 'Divisi 6', 'Pekerjaan Elektrikal'),
-(64, '7', 'Divisi 7', 'Fasilitas Eksterior Bangunan'),
-(65, '8', 'Divisi 8', 'Miscellaneous Work');
+(64, '7', 'Divisi 7', 'Fasilitas Eksterior Bangunan');
 
 -- --------------------------------------------------------
 
@@ -68,7 +67,6 @@ CREATE TABLE `ahsp_level_2` (
 --
 
 INSERT INTO `ahsp_level_2` (`id`, `kode_lvl_1`, `kode_lvl_2`, `uraian`) VALUES
-(25, '1', '1.1', 'Dokumen Kontrak'),
 (26, '1', '1.2', 'Asuransi dan Jaminan'),
 (27, '2', '2.1', 'Setting-out'),
 (29, '2', '2.2', 'Site-work'),
@@ -79,7 +77,6 @@ INSERT INTO `ahsp_level_2` (`id`, `kode_lvl_1`, `kode_lvl_2`, `uraian`) VALUES
 (34, '1', '1.5', 'Dokumentasi Proyek'),
 (35, '2', '2.4', 'Pembersihan Lahan dan Removal'),
 (36, '2', '2.5', 'Gajian, pemotongan, timbunan, dan buangan'),
-(37, '3', '3.1', 'Pekerjaan Struktural di Atas Tanah'),
 (38, '3', '3.3', 'Rangka Atap'),
 (39, '4', '4.1', 'Beton'),
 (40, '4', '4.2', 'Logam'),
@@ -103,8 +100,7 @@ CREATE TABLE `ahsp_level_3` (
 --
 
 INSERT INTO `ahsp_level_3` (`id`, `kode_lvl_2`, `kode_lvl_3`, `uraian`) VALUES
-(8, '2.2', '2.2.1', 'Pekerjaan Persiapan'),
-(9, '3.2', '3.2.1', 'Pekerjaan Pondasi');
+(8, '2.2', '2.2.1', 'Pekerjaan Persiapan');
 
 -- --------------------------------------------------------
 
@@ -124,8 +120,7 @@ CREATE TABLE `ahsp_level_4` (
 --
 
 INSERT INTO `ahsp_level_4` (`id`, `kode_lvl_3`, `kode_lvl_4`, `uraian`) VALUES
-(5, '2.2.1', '2.2.1.1', 'Pembuatan 1 m2 pagar sementara dari kayu'),
-(6, '3.2.1', '3.2.1.1', 'Pemasangan Pondasi Batu Belah 1PC 3PP');
+(5, '2.2.1', '2.2.1.1', 'Pembuatan 1 m2 pagar sementara dari kayu');
 
 -- --------------------------------------------------------
 
@@ -139,13 +134,6 @@ CREATE TABLE `alat` (
   `satuan` varchar(128) NOT NULL,
   `harga` int(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `alat`
---
-
-INSERT INTO `alat` (`id`, `uraian`, `satuan`, `harga`) VALUES
-(2, 'Traktor', 'Unit', 25000000);
 
 -- --------------------------------------------------------
 
@@ -161,13 +149,6 @@ CREATE TABLE `bahan` (
   `harga` int(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `bahan`
---
-
-INSERT INTO `bahan` (`id`, `uraian`, `kode`, `satuan`, `harga`) VALUES
-(1, 'Semen Baturaja', 'SM1', 'Sak', 60000);
-
 -- --------------------------------------------------------
 
 --
@@ -182,6 +163,7 @@ CREATE TABLE `biodata` (
   `jenis_kelamin` varchar(128) NOT NULL,
   `image` varchar(255) NOT NULL,
   `alamat` varchar(128) NOT NULL,
+  `id_daerah` int(11) NOT NULL,
   `no_telp` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -189,8 +171,30 @@ CREATE TABLE `biodata` (
 -- Dumping data untuk tabel `biodata`
 --
 
-INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image`, `alamat`, `no_telp`) VALUES
-(1, '123', 'Dwi Harsyah Prasetya', '2002-02-10', 'Laki-laki', '3122700-200.png', 'Jl. Pakri 1 no. 103 Kel. Duku Kec. Ilir Tim II, Kota Palembang', '082376287800');
+INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image`, `alamat`, `id_daerah`, `no_telp`) VALUES
+(1, '123', 'Dwi Harsyah Prasetya', '2002-02-10', 'Laki-laki', 'IMG-20190430-WA0047.jpg', 'Jl. Pakri 1 Rusunawa Polda Sumsel No.103 Kel Duku Kec Ilir Timur II', 2, '0823628800'),
+(2, '111', 'Valentino Rossi46', '1990-05-23', 'Laki-laki', 'EFFECTS.jpg', 'Kota Palembang', 2, '08523104616'),
+(12, '112', 'Fanisa Diva Refitra', '2001-11-15', 'Perempuan', 'IMG_20190426_142715.jpeg', 'Kota Palembang', 3, '123'),
+(13, '222', 'Myah Zabillah', '2001-01-01', '', 'default.jpg', '', 2, '');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `daerah`
+--
+
+CREATE TABLE `daerah` (
+  `id` int(11) NOT NULL,
+  `daerah` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `daerah`
+--
+
+INSERT INTO `daerah` (`id`, `daerah`) VALUES
+(2, 'Palembang'),
+(3, 'Lahat');
 
 -- --------------------------------------------------------
 
@@ -204,13 +208,6 @@ CREATE TABLE `upah` (
   `satuan` varchar(128) NOT NULL,
   `harga` int(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `upah`
---
-
-INSERT INTO `upah` (`id`, `uraian`, `satuan`, `harga`) VALUES
-(2, 'Tukang Batu', 'OH', 20000);
 
 -- --------------------------------------------------------
 
@@ -232,7 +229,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$QnWHJLDGHjAFvpZRRbQYI.3Rmmi1CQRCF3hvOzne.eR92MAr0qnUO', 1, 1, 1629985556);
+(1, '123', '$2y$10$QnWHJLDGHjAFvpZRRbQYI.3Rmmi1CQRCF3hvOzne.eR92MAr0qnUO', 1, 1, 1630833298),
+(2, '111', '$2y$10$b1ezdsnQss92b/OtJH1tmeim762HjwmIsnLHdWYCsK6ofGKpGDzq6', 2, 0, 1629985556),
+(16, '112', '$2y$10$TcffkHHGIR0FqMz1ahVZseD4wjR4Z3WP6qsZKagO8RDRJd39LG2UW', 2, 1, 1634113977),
+(17, '222', '$2y$10$P.mlDgke1BHExbM/Lktkp.VG7LljGleeD.N8gUFjW2Joioagea32i', 2, 1, 1634267270);
 
 -- --------------------------------------------------------
 
@@ -250,7 +250,8 @@ CREATE TABLE `user_role` (
 --
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
-(1, 'Administrator\r\n');
+(1, 'Admin\r\n'),
+(2, 'User');
 
 --
 -- Indexes for dumped tables
@@ -299,6 +300,12 @@ ALTER TABLE `bahan`
 -- Indeks untuk tabel `biodata`
 --
 ALTER TABLE `biodata`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `daerah`
+--
+ALTER TABLE `daerah`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -363,7 +370,13 @@ ALTER TABLE `bahan`
 -- AUTO_INCREMENT untuk tabel `biodata`
 --
 ALTER TABLE `biodata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `daerah`
+--
+ALTER TABLE `daerah`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `upah`
@@ -375,13 +388,13 @@ ALTER TABLE `upah`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
