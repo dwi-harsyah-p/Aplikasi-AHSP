@@ -34,6 +34,9 @@
                             <?php } elseif ($datauser['jenis_kelamin'] == 'Perempuan') { ?>
                                 <option value="Laki-laki">Laki-Laki</option>
                                 <option value="Perempuan" selected>Perempuan</option>
+                            <?php } else { ?>
+                                <option value="Laki-laki">Laki-Laki</option>
+                                <option value="Perempuan">Perempuan</option>
                             <?php } ?>
                         </select>
                         <small class="form-text text-danger"><?= form_error('gender'); ?></small>
