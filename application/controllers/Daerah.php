@@ -9,7 +9,11 @@ class Daerah extends CI_Controller
         if (!$this->session->userdata('nip')) {
             $this->session->unset_userdata('re');
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
-            $this->session->set_userdata('re', 'daerah');
+            if ($this->uri->segment(2)) {
+                $this->session->set_userdata('re', $this->uri->segment(1) . '/' . $this->uri->segment(2));
+            } else {
+                $this->session->set_userdata('re', $this->uri->segment(1));
+            }
             redirect('auth');
         }
         $this->session->unset_userdata('re');

@@ -8,7 +8,11 @@ class Upah extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('nip')) {
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
-            $this->session->set_userdata('re', 'upah');
+            if ($this->uri->segment(2)) {
+                $this->session->set_userdata('re', $this->uri->segment(1) . '/' . $this->uri->segment(2));
+            } else {
+                $this->session->set_userdata('re', $this->uri->segment(1));
+            }
             redirect('auth');
         }
         $this->session->unset_userdata('re');

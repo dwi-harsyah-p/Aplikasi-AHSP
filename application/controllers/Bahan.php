@@ -8,7 +8,11 @@ class Bahan extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('nip')) {
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
-            $this->session->set_userdata('re', 'bahan');
+            if ($this->uri->segment(2)) {
+                $this->session->set_userdata('re', $this->uri->segment(1) . '/' . $this->uri->segment(2));
+            } else {
+                $this->session->set_userdata('re', $this->uri->segment(1));
+            }
             redirect('auth');
         }
         $this->session->unset_userdata('re');
@@ -19,6 +23,7 @@ class Bahan extends CI_Controller
         $data['judul'] = 'Data Bahan';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         $data['bahan'] = $this->Ahsp_model->getTable('bahan', 'uraian')->result_array();
+        // $data['bahan'] = $this->Ahsp_model->joinhargawhere($data['user']['id_daerah']);
         $this->load->view('templates/header', $data);
         $this->load->view('bahan/index', $data);
         $this->load->view('templates/footer', $data);

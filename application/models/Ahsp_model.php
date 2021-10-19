@@ -203,4 +203,9 @@ class Ahsp_model extends CI_Model
         $query = "SELECT user.nip, nama, password, role, is_active, date_created FROM user INNER JOIN user_role ON user_role.id = user.role_id INNER JOIN biodata on biodata.nip = user.nip WHERE user.nip = $nip";
         return $this->db->query($query)->row_array();
     }
+    public function joinhargawhere($daerah)
+    {
+        $query = "SELECT uraian, kode, satuan, harga FROM bahan LEFT JOIN harga ON harga.id_bahan = bahan.id WHERE harga.id_daerah = $daerah";
+        return $this->db->query($query)->result_array();
+    }
 }
