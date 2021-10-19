@@ -269,6 +269,11 @@ class User extends CI_Controller
         if ($nip == null || $data['ceknip'] < 1) {
             redirect('user');
         } else {
+            $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $nip)->row_array();
+            $old_image = $data['user']['image'];
+            if ($old_image != 'default.jpg') {
+                unlink(FCPATH . 'assets/img/profile/' . $old_image);
+            }
             $this->Ahsp_model->hapus('user', 'nip', $nip);
             $this->Ahsp_model->hapus('biodata', 'nip', $nip);
             $this->session->set_flashdata('flash', 'Dihapus');

@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="daerah">Daerah</label>
-                        <select name="daerah" id="" class="form-select">
+                        <select name="daerah" id="daerah" class="form-select">
                             <?php
                             foreach ($daerah as $key => $daerah) {
                             ?>
