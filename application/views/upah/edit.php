@@ -15,11 +15,11 @@
                         <input type="text" class="form-control" id="satuan" name="satuan" value="<?= $upah['satuan']; ?>" autocomplete="off">
                         <small class="form-text text-danger"><?= form_error('satuan') ?></small>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="harga">Harga Satuan (Rp)</label>
                         <input type="number" class="form-control" id="harga" name="harga" value="<?= $upah['harga']; ?>" autocomplete="off">
                         <small class="form-text text-danger"><?= form_error('harga') ?></small>
-                    </div>
+                    </div> -->
                     <button class="btn btn-primary " type="submit" name="edit">Edit</button>
                 </form>
             </div>

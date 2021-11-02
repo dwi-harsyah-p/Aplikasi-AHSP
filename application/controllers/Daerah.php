@@ -53,9 +53,19 @@ class Daerah extends CI_Controller
         if ($id == null || $data['cekid'] < 1) {
             redirect('daerah');
         } else {
-            $this->Ahsp_model->hapus('daerah', 'id', $id);
-            $this->session->set_flashdata('flash', 'Dihapus');
-            redirect($_SERVER['HTTP_REFERER']);
+
+            $daerah = $this->Ahsp_model->getTablewhere('daerah', 'id', $id)->row_array();
+            $harga = $this->Ahsp_model->getTablewhere('harga', 'id_daerah', $daerah['id']);
+
+            if ($harga->num_rows() > 0) {
+                $this->session->set_flashdata('row', $harga->num_rows);
+                $this->session->set_userdata('daerah', $daerah['id']);
+                redirect('harga');
+            } else {
+                $this->Ahsp_model->hapus('daerah', 'id', $id);
+                $this->session->set_flashdata('flash', 'Dihapus');
+                redirect($_SERVER['HTTP_REFERER']);
+            }
         }
     }
 

@@ -69,7 +69,7 @@ const msg = $('.flash-pesan').data('flashdata');
         $('#kode2').val($(this).val() + '.');
     });    
 
-    if ($(location).attr('href') == 'http://localhost/Project/pu/Ahsp2/tambah') { 
+    if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp2/tambah') { 
         $(document).ready(function(){
             $('#kode2').val($('select#kode1').val() + '.'); 
         });
@@ -79,7 +79,7 @@ const msg = $('.flash-pesan').data('flashdata');
         $('#kode3').val($(this).val() + '.');
     });
 
-    if ($(location).attr('href') == 'http://localhost/Project/pu/Ahsp3/tambah') { 
+    if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp3/tambah') { 
         $(document).ready(function(){
             $('#kode3').val($('select#kode2').val() + '.'); 
         });
@@ -89,8 +89,29 @@ const msg = $('.flash-pesan').data('flashdata');
         $('#kode4').val($(this).val() + '.');
     });
 
-    if ($(location).attr('href') == 'http://localhost/Project/pu/Ahsp4/tambah') { 
+    if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp4/tambah') { 
         $(document).ready(function(){
             $('#kode4').val($('select#kode3').val() + '.'); 
         });
     }
+
+$(document).ready(function () {
+   $('#kategori').change(function () {
+       var id = $(this).val();
+       $.ajax({
+            url : "http://localhost/Project/pu/harga/getUraian",
+            method : "POST",
+            data : {id: id},
+            async : false,
+            dataType : 'json',
+            success : function(data) {
+                var html = '';
+                var i;
+                for (i = 0; i < data.length; i++) {                    
+                    html += "<option value='"+ data[i].id +"'>" + data[i].uraian + "</option>";
+                }
+                $('#uraian').html(html);
+            }
+       });
+   });
+});

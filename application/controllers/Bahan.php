@@ -23,7 +23,6 @@ class Bahan extends CI_Controller
         $data['judul'] = 'Data Bahan';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         $data['bahan'] = $this->Ahsp_model->getTable('bahan', 'uraian')->result_array();
-        // $data['bahan'] = $this->Ahsp_model->joinhargawhere($data['user']['id_daerah']);
         $this->load->view('templates/header', $data);
         $this->load->view('bahan/index', $data);
         $this->load->view('templates/footer', $data);
@@ -41,10 +40,6 @@ class Bahan extends CI_Controller
         ]);
         $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim', [
             'required' => '{field} harus diisi'
-        ]);
-        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric', [
-            'required' => '{field} harus diisi',
-            'numeric' => '{field} harus Angka'
         ]);
         $data['judul'] = 'Tambah Data Bahan';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
@@ -65,9 +60,18 @@ class Bahan extends CI_Controller
         if ($id == null || $data['cekid'] < 1) {
             redirect('bahan');
         } else {
-            $this->Ahsp_model->hapus('bahan', 'id', $id);
-            $this->session->set_flashdata('flash', 'Dihapus');
-            redirect($_SERVER['HTTP_REFERER']);
+            $bahan = $this->Ahsp_model->getTablewhere('bahan', 'id', $id)->row_array();
+            $harga = $this->Ahsp_model->getTablewhere('harga', 'id_bahan', $bahan['id']);
+
+            if ($harga->num_rows() > 0) {
+                $this->session->set_flashdata('row', $harga->num_rows);
+                $this->session->set_userdata('bahan', $bahan['id']);
+                redirect('harga');
+            } else {
+                $this->Ahsp_model->hapus('bahan', 'id', $id);
+                $this->session->set_flashdata('flash', 'Dihapus');
+                redirect($_SERVER['HTTP_REFERER']);
+            }
         }
     }
 
@@ -81,7 +85,6 @@ class Bahan extends CI_Controller
             $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('kode', 'Kode', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim', ['required' => '{field} harus diisi']);
-            $this->form_validation->set_rules('harga', 'Harga', 'required|trim', ['required' => '{field} harus diisi']);
             $data['judul'] = 'Edit Data Bahan';
             $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             if ($this->form_validation->run() == false) {

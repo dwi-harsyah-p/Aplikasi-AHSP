@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Okt 2021 pada 05.23
+-- Waktu pembuatan: 02 Nov 2021 pada 07.38
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -131,9 +131,17 @@ INSERT INTO `ahsp_level_4` (`id`, `kode_lvl_3`, `kode_lvl_4`, `uraian`) VALUES
 CREATE TABLE `alat` (
   `id` int(11) NOT NULL,
   `uraian` varchar(128) NOT NULL,
-  `satuan` varchar(128) NOT NULL,
-  `harga` int(128) NOT NULL
+  `satuan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `alat`
+--
+
+INSERT INTO `alat` (`id`, `uraian`, `satuan`) VALUES
+(6, 'Sekop', 'Unit'),
+(7, 'Gerobak', 'Unit'),
+(8, 'Traktor', 'Unit');
 
 -- --------------------------------------------------------
 
@@ -145,9 +153,18 @@ CREATE TABLE `bahan` (
   `id` int(11) NOT NULL,
   `uraian` varchar(128) NOT NULL,
   `kode` varchar(128) NOT NULL,
-  `satuan` varchar(128) NOT NULL,
-  `harga` int(128) NOT NULL
+  `satuan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `bahan`
+--
+
+INSERT INTO `bahan` (`id`, `uraian`, `kode`, `satuan`) VALUES
+(3, 'Semen Baturaja', 'SM1', 'SAK'),
+(6, 'Kayu', 'ky1', 'Batang'),
+(7, 'Besi', 'bs1', 'Batang'),
+(8, 'Batu', 'bt1', 'Kubik');
 
 -- --------------------------------------------------------
 
@@ -172,10 +189,7 @@ CREATE TABLE `biodata` (
 --
 
 INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image`, `alamat`, `id_daerah`, `no_telp`) VALUES
-(1, '123', 'Dwi Harsyah Prasetya', '2002-02-10', 'Laki-laki', 'IMG-20190430-WA0047.jpg', 'Jl. Pakri 1 Rusunawa Polda Sumsel No.103 Kel Duku Kec Ilir Timur II', 2, '0823628800'),
-(2, '111', 'Valentino Rossi46', '1990-05-23', 'Laki-laki', 'EFFECTS.jpg', 'Kota Palembang', 2, '08523104616'),
-(12, '112', 'Fanisa Diva Refitra', '2001-11-15', 'Perempuan', 'IMG_20190426_142715.jpeg', 'Kota Palembang', 3, '123'),
-(13, '222', 'Myah Zabillah', '2001-01-01', '', 'default.jpg', '', 2, '');
+(1, '123', 'Dwi Harsyah Prasetya', '2002-02-10', 'Laki-laki', 'IMG-20190430-WA0031.jpg', 'Jl. Pakri 1 Rusunawa Polda Sumsel No.103 Kel Duku Kec Ilir Timur II', 2, '0823628800');
 
 -- --------------------------------------------------------
 
@@ -193,8 +207,33 @@ CREATE TABLE `daerah` (
 --
 
 INSERT INTO `daerah` (`id`, `daerah`) VALUES
-(2, 'Palembang'),
-(3, 'Lahat');
+(3, 'Lahat'),
+(4, 'Muara Enim');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `harga`
+--
+
+CREATE TABLE `harga` (
+  `id` int(11) NOT NULL,
+  `id_alat` int(11) NOT NULL,
+  `id_bahan` int(11) NOT NULL,
+  `id_upah` int(11) NOT NULL,
+  `kategori` varchar(128) NOT NULL,
+  `id_daerah` int(11) NOT NULL,
+  `harga` int(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `harga`
+--
+
+INSERT INTO `harga` (`id`, `id_alat`, `id_bahan`, `id_upah`, `kategori`, `id_daerah`, `harga`) VALUES
+(32, 7, 0, 0, 'Alat', 3, 12),
+(33, 0, 8, 0, 'Bahan', 3, 1),
+(36, 7, 0, 0, 'Alat', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -205,9 +244,17 @@ INSERT INTO `daerah` (`id`, `daerah`) VALUES
 CREATE TABLE `upah` (
   `id` int(11) NOT NULL,
   `uraian` varchar(128) NOT NULL,
-  `satuan` varchar(128) NOT NULL,
-  `harga` int(128) NOT NULL
+  `satuan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `upah`
+--
+
+INSERT INTO `upah` (`id`, `uraian`, `satuan`) VALUES
+(5, 'Mandor', 'OH'),
+(6, 'Tukang Gali', 'OH'),
+(7, 'Tukang Batu', 'OH');
 
 -- --------------------------------------------------------
 
@@ -229,10 +276,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$QnWHJLDGHjAFvpZRRbQYI.3Rmmi1CQRCF3hvOzne.eR92MAr0qnUO', 1, 1, 1630833298),
-(2, '111', '$2y$10$b1ezdsnQss92b/OtJH1tmeim762HjwmIsnLHdWYCsK6ofGKpGDzq6', 2, 0, 1629985556),
-(16, '112', '$2y$10$TcffkHHGIR0FqMz1ahVZseD4wjR4Z3WP6qsZKagO8RDRJd39LG2UW', 2, 1, 1634113977),
-(17, '222', '$2y$10$P.mlDgke1BHExbM/Lktkp.VG7LljGleeD.N8gUFjW2Joioagea32i', 2, 1, 1634267270);
+(1, '123', '$2y$10$QnWHJLDGHjAFvpZRRbQYI.3Rmmi1CQRCF3hvOzne.eR92MAr0qnUO', 1, 1, 1630833298);
 
 -- --------------------------------------------------------
 
@@ -309,6 +353,12 @@ ALTER TABLE `daerah`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `harga`
+--
+ALTER TABLE `harga`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `upah`
 --
 ALTER TABLE `upah`
@@ -358,37 +408,43 @@ ALTER TABLE `ahsp_level_4`
 -- AUTO_INCREMENT untuk tabel `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `bahan`
 --
 ALTER TABLE `bahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `biodata`
 --
 ALTER TABLE `biodata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `daerah`
 --
 ALTER TABLE `daerah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `harga`
+--
+ALTER TABLE `harga`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `upah`
 --
 ALTER TABLE `upah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_role`

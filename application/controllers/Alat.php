@@ -37,10 +37,6 @@ class Alat extends CI_Controller
         $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim', [
             'required' => '{field} harus diisi'
         ]);
-        $this->form_validation->set_rules('harga', 'Harga', 'required|trim|numeric', [
-            'required' => '{field} harus diisi',
-            'numeric' => '{field} harus Angka'
-        ]);
         $data['judul'] = 'Tambah Data Alat';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         if ($this->form_validation->run() == false) {
@@ -60,9 +56,18 @@ class Alat extends CI_Controller
         if ($id == null || $data['cekid'] < 1) {
             redirect('alat');
         } else {
-            $this->Ahsp_model->hapus('alat', 'id', $id);
-            $this->session->set_flashdata('flash', 'Dihapus');
-            redirect($_SERVER['HTTP_REFERER']);
+            $alat = $this->Ahsp_model->getTablewhere('alat', 'id', $id)->row_array();
+            $harga = $this->Ahsp_model->getTablewhere('harga', 'id_alat', $alat['id']);
+
+            if ($harga->num_rows() > 0) {
+                $this->session->set_flashdata('row', $harga->num_rows);
+                $this->session->set_userdata('alat', $alat['id']);
+                redirect('harga');
+            } else {
+                $this->Ahsp_model->hapus('alat', 'id', $id);
+                $this->session->set_flashdata('flash', 'Dihapus');
+                redirect($_SERVER['HTTP_REFERER']);
+            }
         }
     }
 
@@ -75,7 +80,6 @@ class Alat extends CI_Controller
             $data['alat'] = $this->Ahsp_model->getTablewhere('alat', 'id', $id)->row_array();
             $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim', ['required' => '{field} harus diisi']);
-            $this->form_validation->set_rules('harga', 'Harga', 'required|trim', ['required' => '{field} harus diisi']);
             $data['judul'] = 'Edit Data Alat';
             $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             if ($this->form_validation->run() == false) {
