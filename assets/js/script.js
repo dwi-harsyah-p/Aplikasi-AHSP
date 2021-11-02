@@ -1,5 +1,4 @@
 const flashData = $('.flash-data').data('flashdata');
-
     if (flashData) {
         swal({
             title: 'Data',
@@ -9,7 +8,6 @@ const flashData = $('.flash-data').data('flashdata');
     }
 
 const flashpass = $('.flash-pass').data('flashdata');
-
     if (flashpass) {
         swal({
             title: 'Change Password',
@@ -19,7 +17,6 @@ const flashpass = $('.flash-pass').data('flashdata');
     }
 
 const flashpasspesan = $('.flash-passpesan').data('flashdata');
-
     if (flashpasspesan) {
         swal({
             title: 'Change Password',
@@ -28,7 +25,6 @@ const flashpasspesan = $('.flash-passpesan').data('flashdata');
         });
     }
 const row = $('.flash-delete').data('flashdata');
-
     if (row) {
         swal({
             title: 'Data',
@@ -38,7 +34,6 @@ const row = $('.flash-delete').data('flashdata');
     }
 
 const msg = $('.flash-pesan').data('flashdata');
-
     if (msg) {
         swal({
             title: 'Data',
@@ -48,7 +43,6 @@ const msg = $('.flash-pesan').data('flashdata');
     }
 
     $('.tombol-hapus').on('click', function(e) {
-
         e.preventDefault();
         // Mencegah eksekusi hapus
         const href = $(this).attr('href');
@@ -64,39 +58,30 @@ const msg = $('.flash-pesan').data('flashdata');
             }
         })
     });
-
-    $('select#kode1').on('change', function() {
-        $('#kode2').val($(this).val() + '.');
-    });    
-
-    if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp2/tambah') { 
-        $(document).ready(function(){
-            $('#kode2').val($('select#kode1').val() + '.'); 
-        });
-    }    
-
-    $('select#kode2').on('change', function() {
-        $('#kode3').val($(this).val() + '.');
-    });
-
-    if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp3/tambah') { 
-        $(document).ready(function(){
-            $('#kode3').val($('select#kode2').val() + '.'); 
-        });
-    }    
     
-    $('select#kode3').on('change', function() {
-        $('#kode4').val($(this).val() + '.');
-    });
-
-    if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp4/tambah') { 
-        $(document).ready(function(){
-            $('#kode4').val($('select#kode3').val() + '.'); 
+$(document).ready(function(){
+    // Set auto Kode Ahsp2
+    if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp2/tambah') { 
+        $('#kode2').val($('select#kode1').val() + '.');             
+        $('select#kode1').on('change', function() {
+            $('#kode2').val($(this).val() + '.');
+        }); 
+    // Set auto Kode Ahsp3   
+    }else if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp3/tambah') {         
+        $('#kode3').val($('select#kode2').val() + '.'); 
+        $('select#kode2').on('change', function() {
+            $('#kode3').val($(this).val() + '.');
         });
+    // Set auto Kode Ahsp4
+    }else if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp4/tambah') {         
+        $('#kode4').val($('select#kode3').val() + '.'); 
+        $('select#kode3').on('change', function() {
+            $('#kode4').val($(this).val() + '.');
+        });    
     }
 
-$(document).ready(function () {
-   $('#kategori').change(function () {
+    // Kategori Uraian di Controller Harga
+    $('#kategori').change(function () {
        var id = $(this).val();
        $.ajax({
             url : "http://localhost/Project/pu/harga/getUraian",
@@ -114,4 +99,5 @@ $(document).ready(function () {
             }
        });
    });
+   
 });
