@@ -8,25 +8,19 @@
                      <input type="text" class="form-control" id="id" name="id" value="<?= $harga['id']; ?>" autocomplete="off" hidden>
                      <div class="form-group">
                          <label for="kategori">Kategori</label>
-                         <select name="kategori" id="kategori" class="form-select">
-                             <option value="<?= $harga['kategori'] ?>"><?= $harga['kategori']; ?></option>
-                         </select>
+                         <input class="form-control" type="text" name="kategori" id="kategori" value="<?= $harga['kategori']; ?>" readonly>
                          <small class="form-text text-danger"><?= form_error('kategori'); ?></small>
                      </div>
                      <div class="form-group">
                          <label for="uraian">Uraian</label>
-                         <select name="uraian" id="uraian" class="form-select">
-                             <option value="<?= $harga['uraian'] ?>"><?= $harga['uraian']; ?></option>
-                         </select>
+                         <input class="form-control" type="text" name="kategori" id="kategori" value="<?= $harga['uraian']; ?>" readonly>
                          <small class="form-text text-danger"><?= form_error('uraian'); ?></small>
                          <?php echo $this->session->userdata('err');
                             $this->session->unset_userdata('err'); ?>
                      </div>
                      <div class="form-group">
                          <label for="daerah">Daerah</label>
-                         <select name="daerah" id="daerah" class="form-select">
-                             <option value="<?= $harga['daerah'] ?>"><?= $harga['daerah']; ?></option>
-                         </select>
+                         <input class="form-control" type="text" name="kategori" id="kategori" value="<?= $harga['daerah']; ?>" readonly>
                          <small class="form-text text-danger"><?= form_error('daerah'); ?></small>
                      </div>
                      <div class="form-group">
