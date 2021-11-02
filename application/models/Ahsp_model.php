@@ -39,24 +39,23 @@ class Ahsp_model extends CI_Model
             $data = [
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
                 'kode' => htmlspecialchars($this->input->post('kode', true)),
-                'satuan' => htmlspecialchars($this->input->post('satuan', true)),
-                // 'harga' => htmlspecialchars($this->input->post('harga', true))
+                'satuan' => htmlspecialchars($this->input->post('satuan', true))
             ];
 
             return $this->db->insert($table, $data);
         } elseif ($table == 'alat') {
             $data = [
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
-                'satuan' => htmlspecialchars($this->input->post('satuan', true)),
-                // 'harga' => htmlspecialchars($this->input->post('harga', true))
+                'kode' => htmlspecialchars($this->input->post('kode', true)),
+                'satuan' => htmlspecialchars($this->input->post('satuan', true))
             ];
 
             return $this->db->insert($table, $data);
         } elseif ($table == 'upah') {
             $data = [
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
-                'satuan' => htmlspecialchars($this->input->post('satuan', true)),
-                // 'harga' => htmlspecialchars($this->input->post('harga', true))
+                'kode' => htmlspecialchars($this->input->post('kode', true)),
+                'satuan' => htmlspecialchars($this->input->post('satuan', true))
             ];
 
             return $this->db->insert($table, $data);
@@ -182,12 +181,14 @@ class Ahsp_model extends CI_Model
         } elseif ($table == 'alat') {
             $data = [
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
+                'kode' => htmlspecialchars($this->input->post('kode', true)),
                 'satuan' => htmlspecialchars($this->input->post('satuan', true))
             ];
             return $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         } elseif ($table == 'upah') {
             $data = [
                 'uraian' => htmlspecialchars($this->input->post('uraian', true)),
+                'kode' => htmlspecialchars($this->input->post('kode', true)),
                 'satuan' => htmlspecialchars($this->input->post('satuan', true))
             ];
             return $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
@@ -219,23 +220,25 @@ class Ahsp_model extends CI_Model
         $query = "SELECT user.nip, nama, password, daerah, role, is_active, date_created FROM user LEFT JOIN user_role ON user_role.id = user.role_id LEFT JOIN biodata on biodata.nip = user.nip LEFT JOIN daerah ON daerah.id=biodata.id_daerah";
         return $this->db->query($query)->result_array();
     }
+
     public function joinuserwhere($nip)
     {
         $query = "SELECT user.nip, nama, password, role, is_active, date_created FROM user INNER JOIN user_role ON user_role.id = user.role_id INNER JOIN biodata on biodata.nip = user.nip WHERE user.nip = $nip";
         return $this->db->query($query)->row_array();
     }
+
     public function joinhargaalat($idalat = null, $daerah = null, $id = null)
     {
         if ($idalat && $daerah) {
-            $query = "SELECT harga.id, alat.uraian, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_alat = $idalat && daerah.id = $daerah";
+            $query = "SELECT harga.id, alat.uraian, alat.kode, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_alat = $idalat && daerah.id = $daerah";
         } elseif ($idalat) {
-            $query = "SELECT harga.id, alat.uraian, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_alat = $idalat";
+            $query = "SELECT harga.id, alat.uraian, alat.kode, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_alat = $idalat";
         } elseif ($daerah) {
-            $query = "SELECT harga.id, alat.uraian, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE daerah.id = $daerah";
+            $query = "SELECT harga.id, alat.uraian, alat.kode, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE daerah.id = $daerah";
         } elseif ($id) {
-            $query = "SELECT harga.id, alat.uraian, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id = $id";
+            $query = "SELECT harga.id, alat.uraian, alat.kode, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id = $id";
         } else {
-            $query = "SELECT harga.id, alat.uraian, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah ORDER BY daerah.daerah";
+            $query = "SELECT harga.id, alat.uraian, alat.kode, alat.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN alat ON alat.id = harga.id_alat INNER JOIN daerah ON daerah.id = harga.id_daerah ORDER BY daerah.daerah";
         }
         return $this->db->query($query);
     }
@@ -243,15 +246,15 @@ class Ahsp_model extends CI_Model
     public function joinhargabahan($idbahan = null, $daerah = null, $id = null)
     {
         if ($idbahan && $daerah) {
-            $query = "SELECT harga.id, bahan.uraian, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_bahan = $idbahan && daerah.id = $daerah";
+            $query = "SELECT harga.id, bahan.uraian, bahan.kode, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_bahan = $idbahan && daerah.id = $daerah";
         } elseif ($idbahan) {
-            $query = "SELECT harga.id, bahan.uraian, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_bahan = $idbahan";
+            $query = "SELECT harga.id, bahan.uraian, bahan.kode, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_bahan = $idbahan";
         } elseif ($daerah) {
-            $query = "SELECT harga.id, bahan.uraian, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE daerah.id = $daerah";
+            $query = "SELECT harga.id, bahan.uraian, bahan.kode, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE daerah.id = $daerah";
         } elseif ($id) {
-            $query = "SELECT harga.id, bahan.uraian, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id = $id";
+            $query = "SELECT harga.id, bahan.uraian, bahan.kode, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id = $id";
         } else {
-            $query = "SELECT harga.id, bahan.uraian, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah ORDER BY daerah.daerah";
+            $query = "SELECT harga.id, bahan.uraian, bahan.kode, bahan.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN bahan ON bahan.id = harga.id_bahan INNER JOIN daerah ON daerah.id = harga.id_daerah ORDER BY daerah.daerah";
         }
         return $this->db->query($query);
     }
@@ -259,15 +262,15 @@ class Ahsp_model extends CI_Model
     public function joinhargaupah($idupah = null, $daerah = null, $id = null)
     {
         if ($idupah && $daerah) {
-            $query = "SELECT harga.id, upah.uraian, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_upah = $idupah && daerah.id = $daerah";
+            $query = "SELECT harga.id, upah.uraian, upah.kode, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_upah = $idupah && daerah.id = $daerah";
         } elseif ($idupah) {
-            $query = "SELECT harga.id, upah.uraian, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_upah = $idupah";
+            $query = "SELECT harga.id, upah.uraian, upah.kode, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id_upah = $idupah";
         } elseif ($daerah) {
-            $query = "SELECT harga.id, upah.uraian, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE daerah.id = $daerah";
+            $query = "SELECT harga.id, upah.uraian, upah.kode, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE daerah.id = $daerah";
         } elseif ($id) {
-            $query = "SELECT harga.id, upah.uraian, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id = $id";
+            $query = "SELECT harga.id, upah.uraian, upah.kode, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah WHERE harga.id = $id";
         } else {
-            $query = "SELECT harga.id, upah.uraian, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah ORDER BY daerah.daerah";
+            $query = "SELECT harga.id, upah.uraian, upah.kode, upah.satuan, daerah.daerah, harga.kategori, harga.harga FROM harga INNER JOIN upah ON upah.id = harga.id_upah INNER JOIN daerah ON daerah.id = harga.id_daerah ORDER BY daerah.daerah";
         }
         return $this->db->query($query);
     }

@@ -13,6 +13,7 @@
                         <tr>
                             <th>#</th>
                             <th>Uraian</th>
+                            <th>Kode</th>
                             <th>Satuan</th>
                             <th>Kategori</th>
                             <th>Daerah</th>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <td><?= $no++; ?></td>
                                     <td><?= $val['uraian']; ?></td>
+                                    <td><?= $val['kode']; ?></td>
                                     <td><?= $val['satuan']; ?></td>
                                     <td><?= $val['kategori']; ?></td>
                                     <td><?= $val['daerah']; ?></td>
@@ -54,6 +56,7 @@
                                 <tr>
                                     <td><?= $no++; ?></td>
                                     <td><?= $val['uraian']; ?></td>
+                                    <td><?= $val['kode']; ?></td>
                                     <td><?= $val['satuan']; ?></td>
                                     <td><?= $val['kategori']; ?></td>
                                     <td><?= $val['daerah']; ?></td>
@@ -79,6 +82,7 @@
                                 <tr>
                                     <td><?= $no++; ?></td>
                                     <td><?= $val['uraian']; ?></td>
+                                    <td><?= $val['kode']; ?></td>
                                     <td><?= $val['satuan']; ?></td>
                                     <td><?= $val['kategori']; ?></td>
                                     <td><?= $val['daerah']; ?></td>

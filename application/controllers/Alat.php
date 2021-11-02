@@ -28,9 +28,14 @@ class Alat extends CI_Controller
         $this->load->view('alat/index', $data);
         $this->load->view('templates/footer', $data);
     }
+
     public function tambah()
     {
         $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim|is_unique[alat.uraian]', [
+            'is_unique' => '{field} sudah ada',
+            'required' => '{field} harus diisi'
+        ]);
+        $this->form_validation->set_rules('kode', 'Kode', 'required|trim|is_unique[alat.kode]', [
             'is_unique' => '{field} sudah ada',
             'required' => '{field} harus diisi'
         ]);
@@ -79,6 +84,7 @@ class Alat extends CI_Controller
         } else {
             $data['alat'] = $this->Ahsp_model->getTablewhere('alat', 'id', $id)->row_array();
             $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim', ['required' => '{field} harus diisi']);
+            $this->form_validation->set_rules('kode', 'Kode', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim', ['required' => '{field} harus diisi']);
             $data['judul'] = 'Edit Data Alat';
             $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();

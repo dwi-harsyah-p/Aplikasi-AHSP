@@ -33,6 +33,10 @@ class Upah extends CI_Controller
             'is_unique' => '{field} sudah ada',
             'required' => '{field} harus diisi'
         ]);
+        $this->form_validation->set_rules('kode', 'Kode', 'required|trim|is_unique[upah.kode]', [
+            'is_unique' => '{field} sudah ada',
+            'required' => '{field} harus diisi'
+        ]);
         $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim', [
             'required' => '{field} harus diisi'
         ]);
@@ -78,6 +82,7 @@ class Upah extends CI_Controller
         } else {
             $data['upah'] = $this->Ahsp_model->getTablewhere('upah', 'id', $id)->row_array();
             $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim', ['required' => '{field} harus diisi']);
+            $this->form_validation->set_rules('kode', 'Kode', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('satuan', 'Satuan', 'required|trim', ['required' => '{field} harus diisi']);
             $data['judul'] = 'Edit Data Upah';
             $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Nov 2021 pada 07.38
+-- Waktu pembuatan: 02 Nov 2021 pada 19.18
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -22,6 +22,21 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `ahsp_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `ahsp_db`;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `ahsp`
+--
+
+CREATE TABLE `ahsp` (
+  `id` int(11) NOT NULL,
+  `kode_lvl_4` varchar(128) NOT NULL,
+  `id_alat` int(11) NOT NULL,
+  `id_bahan` int(11) NOT NULL,
+  `id_upah` int(11) NOT NULL,
+  `koefesien` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -131,6 +146,7 @@ INSERT INTO `ahsp_level_4` (`id`, `kode_lvl_3`, `kode_lvl_4`, `uraian`) VALUES
 CREATE TABLE `alat` (
   `id` int(11) NOT NULL,
   `uraian` varchar(128) NOT NULL,
+  `kode` varchar(128) NOT NULL,
   `satuan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -138,10 +154,10 @@ CREATE TABLE `alat` (
 -- Dumping data untuk tabel `alat`
 --
 
-INSERT INTO `alat` (`id`, `uraian`, `satuan`) VALUES
-(6, 'Sekop', 'Unit'),
-(7, 'Gerobak', 'Unit'),
-(8, 'Traktor', 'Unit');
+INSERT INTO `alat` (`id`, `uraian`, `kode`, `satuan`) VALUES
+(10, 'Sekop', 'SK1', 'Unit'),
+(11, 'Gerobak', 'GR1', 'Unit'),
+(12, 'Cangkul', 'CK1', 'Unit');
 
 -- --------------------------------------------------------
 
@@ -161,10 +177,9 @@ CREATE TABLE `bahan` (
 --
 
 INSERT INTO `bahan` (`id`, `uraian`, `kode`, `satuan`) VALUES
-(3, 'Semen Baturaja', 'SM1', 'SAK'),
-(6, 'Kayu', 'ky1', 'Batang'),
-(7, 'Besi', 'bs1', 'Batang'),
-(8, 'Batu', 'bt1', 'Kubik');
+(10, 'Semen', 'SM1', 'KG'),
+(11, 'Besi', 'BS1', 'Batang'),
+(12, 'Kayu', 'KY1', 'Batang');
 
 -- --------------------------------------------------------
 
@@ -208,7 +223,8 @@ CREATE TABLE `daerah` (
 
 INSERT INTO `daerah` (`id`, `daerah`) VALUES
 (3, 'Lahat'),
-(4, 'Muara Enim');
+(4, 'Muara Enim'),
+(5, 'Palembang');
 
 -- --------------------------------------------------------
 
@@ -231,9 +247,10 @@ CREATE TABLE `harga` (
 --
 
 INSERT INTO `harga` (`id`, `id_alat`, `id_bahan`, `id_upah`, `kategori`, `id_daerah`, `harga`) VALUES
-(32, 7, 0, 0, 'Alat', 3, 12),
-(33, 0, 8, 0, 'Bahan', 3, 1),
-(36, 7, 0, 0, 'Alat', 4, 1);
+(49, 12, 0, 0, 'Alat', 3, 1111111111),
+(50, 11, 0, 0, 'Alat', 3, 1),
+(51, 0, 11, 0, 'Bahan', 3, 1),
+(52, 0, 0, 10, 'Upah', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -244,6 +261,7 @@ INSERT INTO `harga` (`id`, `id_alat`, `id_bahan`, `id_upah`, `kategori`, `id_dae
 CREATE TABLE `upah` (
   `id` int(11) NOT NULL,
   `uraian` varchar(128) NOT NULL,
+  `kode` varchar(128) NOT NULL,
   `satuan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -251,10 +269,10 @@ CREATE TABLE `upah` (
 -- Dumping data untuk tabel `upah`
 --
 
-INSERT INTO `upah` (`id`, `uraian`, `satuan`) VALUES
-(5, 'Mandor', 'OH'),
-(6, 'Tukang Gali', 'OH'),
-(7, 'Tukang Batu', 'OH');
+INSERT INTO `upah` (`id`, `uraian`, `kode`, `satuan`) VALUES
+(9, 'Pekerja', 'PK1', 'OH'),
+(10, 'Mandor', 'MN1', 'OH'),
+(11, 'Tukang Gali', 'TG1', 'OH');
 
 -- --------------------------------------------------------
 
@@ -300,6 +318,12 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `ahsp`
+--
+ALTER TABLE `ahsp`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `ahsp_level_1`
@@ -381,40 +405,46 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `ahsp`
+--
+ALTER TABLE `ahsp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `ahsp_level_1`
 --
 ALTER TABLE `ahsp_level_1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_2`
 --
 ALTER TABLE `ahsp_level_2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_3`
 --
 ALTER TABLE `ahsp_level_3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_4`
 --
 ALTER TABLE `ahsp_level_4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `bahan`
 --
 ALTER TABLE `bahan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `biodata`
@@ -426,19 +456,19 @@ ALTER TABLE `biodata`
 -- AUTO_INCREMENT untuk tabel `daerah`
 --
 ALTER TABLE `daerah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `harga`
 --
 ALTER TABLE `harga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT untuk tabel `upah`
 --
 ALTER TABLE `upah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
