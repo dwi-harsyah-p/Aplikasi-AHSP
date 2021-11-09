@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Nov 2021 pada 19.18
+-- Waktu pembuatan: 09 Nov 2021 pada 07.04
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -37,6 +37,15 @@ CREATE TABLE `ahsp` (
   `id_upah` int(11) NOT NULL,
   `koefesien` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `ahsp`
+--
+
+INSERT INTO `ahsp` (`id`, `kode_lvl_4`, `id_alat`, `id_bahan`, `id_upah`, `koefesien`) VALUES
+(141, '2.2.1.1', 12, 0, 0, '1'),
+(142, '2.2.1.1', 0, 11, 0, '2'),
+(143, '2.2.1.1', 0, 0, 10, '3');
 
 -- --------------------------------------------------------
 
@@ -135,7 +144,8 @@ CREATE TABLE `ahsp_level_4` (
 --
 
 INSERT INTO `ahsp_level_4` (`id`, `kode_lvl_3`, `kode_lvl_4`, `uraian`) VALUES
-(5, '2.2.1', '2.2.1.1', 'Pembuatan 1 m2 pagar sementara dari kayu');
+(5, '2.2.1', '2.2.1.1', 'Pembuatan 1 m2 pagar sementara dari kayu'),
+(18, '2.2.1', '2.2.1.2', 'Tes');
 
 -- --------------------------------------------------------
 
@@ -247,10 +257,12 @@ CREATE TABLE `harga` (
 --
 
 INSERT INTO `harga` (`id`, `id_alat`, `id_bahan`, `id_upah`, `kategori`, `id_daerah`, `harga`) VALUES
-(49, 12, 0, 0, 'Alat', 3, 1111111111),
+(49, 12, 0, 0, 'Alat', 3, 12345678),
 (50, 11, 0, 0, 'Alat', 3, 1),
 (51, 0, 11, 0, 'Bahan', 3, 1),
-(52, 0, 0, 10, 'Upah', 3, 1);
+(52, 0, 0, 10, 'Upah', 3, 1),
+(53, 12, 0, 0, 'Alat', 4, 1),
+(54, 12, 0, 0, 'Alat', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -408,7 +420,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `ahsp`
 --
 ALTER TABLE `ahsp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_1`
@@ -432,7 +444,7 @@ ALTER TABLE `ahsp_level_3`
 -- AUTO_INCREMENT untuk tabel `ahsp_level_4`
 --
 ALTER TABLE `ahsp_level_4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `alat`
@@ -462,7 +474,7 @@ ALTER TABLE `daerah`
 -- AUTO_INCREMENT untuk tabel `harga`
 --
 ALTER TABLE `harga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT untuk tabel `upah`
