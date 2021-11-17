@@ -76,6 +76,26 @@
 }
 
 a {
-    text-decoration: none;
-    cursor: pointer;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+
+/* Style User */
+.logo-text p {
+	margin-top: -10px;
+}
+
+.information {
+	display: none;
+	font-size: 0.8rem;
+	background-color: aqua;
+	width: 200px;
+	height: 100px;
+	padding: 5px;
+}
+
+.i:hover+.information {
+	display: block;
+	z-index: 1;
 }
