@@ -7,8 +7,16 @@ class Ahsp3 extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Ahsp_model');
-        $this->load->library('form_validation');
+        if (!$this->session->userdata('nip')) {
+            $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
+            if ($this->uri->segment(2)) {
+                $this->session->set_userdata('re', $this->uri->segment(1) . '/' . $this->uri->segment(2));
+            } else {
+                $this->session->set_userdata('re', $this->uri->segment(1));
+            }
+            redirect('auth');
+        }
+        $this->session->unset_userdata('re');
     }
 
     public function index()
@@ -21,6 +29,7 @@ class Ahsp3 extends CI_Controller
             $data['ahsp'] = $this->Ahsp_model->getTable('ahsp_level_3', 'kode_lvl_3')->result_array();
         }
         $data['judul'] = 'Ahsp3';
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         $this->load->view('templates/header', $data);
         $this->load->view('ahsp_lv3/index', $data);
         $this->load->view('templates/footer', $data);
@@ -43,8 +52,20 @@ class Ahsp3 extends CI_Controller
                 'required' => '{field} harus diisi'
             ]);
             $data['judul'] = 'Insert AHSP Level 3';
-
+            $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             if ($this->form_validation->run() == false) {
+                if ($this->form_validation->run() == false && $this->input->post('kode2') . '.' == $this->input->post('kode3')) {
+                    $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('ahsp_lv3/tambah', $data);
+                    $this->load->view('templates/footer', $data);
+                } else {
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('ahsp_lv3/tambah', $data);
+                    $this->load->view('templates/footer', $data);
+                }
+            } elseif ($this->input->post('kode2') . '.' == $this->input->post('kode3')) {
+                $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
                 $this->load->view('templates/header', $data);
                 $this->load->view('ahsp_lv3/tambah', $data);
                 $this->load->view('templates/footer', $data);
@@ -70,7 +91,7 @@ class Ahsp3 extends CI_Controller
                 $this->session->set_userdata('kode3', $lv3['kode_lvl_3']);
                 redirect('ahsp4');
             } else {
-                $this->Ahsp_model->hapus('ahsp_level_3', $id);
+                $this->Ahsp_model->hapus('ahsp_level_3', 'id', $id);
                 $this->session->set_flashdata('flash', 'Dihapus');
                 redirect($_SERVER['HTTP_REFERER']);
             }
@@ -94,7 +115,20 @@ class Ahsp3 extends CI_Controller
                 'required' => '{field} harus diisi'
             ]);
             $data['judul'] = 'Edit Data Ahsp3';
+            $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             if ($this->form_validation->run() == false) {
+                if ($this->form_validation->run() == false && $this->input->post('kode2') . '.' == $this->input->post('kode3')) {
+                    $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('ahsp_lv3/edit', $data);
+                    $this->load->view('templates/footer', $data);
+                } else {
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('ahsp_lv3/edit', $data);
+                    $this->load->view('templates/footer', $data);
+                }
+            } elseif ($this->input->post('kode2') . '.' == $this->input->post('kode3')) {
+                $this->session->set_userdata('err', '<small class="form-text text-danger">Silakan tambahkan kode belakang</small>');
                 $this->load->view('templates/header', $data);
                 $this->load->view('ahsp_lv3/edit', $data);
                 $this->load->view('templates/footer', $data);

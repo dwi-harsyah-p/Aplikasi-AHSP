@@ -34,8 +34,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url(); ?>">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="<?= base_url('assets/img/') ?>bbwss.jpg" alt="" width="40px">
                 </div>
                 <div class="sidebar-brand-text mx-3">AHSP</div>
             </a>
@@ -91,6 +91,35 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#hargasatuan" aria-expanded="true" aria-controls="hargasatuan">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Daftar Harga Satuan</span>
+                </a>
+                <div id="hargasatuan" class="collapse" aria-labelledby="hargasatuan" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a href="<?= base_url('alat') ?>" id="alat" class="collapse-item aktif">Alat</a>
+                        <a href="<?= base_url('bahan') ?>" id="bahan" class="collapse-item aktif">Bahan</a>
+                        <a href="<?= base_url('upah') ?>" id="upah" class="collapse-item aktif">Upah</a>
+                        <a href="<?= base_url('harga') ?>" id="harga" class="collapse-item aktif">Harga</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?= base_url('daerah') ?>">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Daerah</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?= base_url('user') ?>">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>User</span>
+                </a>
+            </li>
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -114,37 +143,25 @@
                         </button>
                     </form>
 
-                    <!-- Topbar Search -->
-                    <!-- <form action="" method="POST" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> -->
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="<?= base_url('assets/'); ?>img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php
+                                                                                            $nama = explode(' ', trim($user['nama']));
+                                                                                            echo $nama[0]; ?>
+                                </span>
+                                <img class="img-profile rounded-circle" src="<?= base_url('assets/img/profile/') . $user['image']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a href="<?= base_url('user/profile'); ?>" class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a href="<?= base_url('user/changepassword'); ?>" class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">

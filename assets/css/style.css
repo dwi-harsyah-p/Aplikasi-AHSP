@@ -16,15 +16,12 @@
 
 @media screen and (max-width : 576px) {
 	.logo-text {
-		font-size: 1rem;
-	}
-
-	.header-login {
-		margin-left: 30px;
+		color: darkorange;
+		font-size: 0.9rem;
 	}
 
 	.logo {
-		width: 25%;
+		width: 30%;
 	}
 }
 
@@ -45,34 +42,42 @@
 	color: rgb(250, 175, 36);
 }
 
+.card {
+	padding: 30px;
+}
+
 .logo {
 	float: left;
 }
 
+.logo-text {
+	/* padding: 5px 10px; */
+}
+
 .footer {
-	margin-top: 150px;
+	margin-top: 80px;
 }
 
 /*End Style Login */
 
 .transition {
-    transition: 0.5s;
+	transition: 0.5s;
 }
 
 .displayblock {
-    display: block;
+	display: block;
 }
 
 .displaynone {
-    display: none;
+	display: none;
 }
 
 .color-red {
-    color: #b70000;
+	color: #b70000;
 }
 
 .color-blue {
-    color: rgba(0, 81, 255, 0.781);
+	color: rgba(0, 81, 255, 0.781);
 }
 
 a {

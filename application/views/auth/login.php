@@ -9,21 +9,26 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/'); ?>css/bootstrap.min.css">
     <link href="<?= base_url('assets/'); ?>css/style.css" rel="stylesheet">
+    <style>
+        .swal-text {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="container col-lg-5 col-md-7 col-sm-9 col-9">
             <div class="row header p-lg-4 py-4">
-                <div class="header-login p-lg-2 p-0">
+                <div class="header-login p-lg-2 ">
                     <img src="<?= base_url('assets/'); ?>img/Logo_PU.jpg" class="logo me-3" width="20%">
-                    <h4 class="logo-text">BBWS SUMATERA VIII</h4>
+                    <h4 class="logo-text fs-6">BBWS SUMATERA VIII</h4>
                     <!-- <h4 class="logo-text fs-6">DIREKTORAT JENDRAL SUMBER DAYA AIR</h4> -->
-                    <h4 class="logo-text">KEMENTERIAN PEKERJAAN UMUM DAN PERUMAHAN RAKYAT</h4>
+                    <h4 class="logo-text fs-6">KEMENTERIAN PEKERJAAN UMUM DAN PERUMAHAN RAKYAT</h4>
                 </div>
             </div>
-            <div class="row login-body">
-                <div class="card p-lg-4 p-4">
+            <div class="row">
+                <div class="card p-lg-4">
                     <h2 class="text-center">Login</h2>
                     <?= $this->session->flashdata('massage'); ?>
                     <form class="p-lg-4" action="" method="post">
@@ -37,7 +42,7 @@
                             <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
                             <small class="form-text text-danger"><?= form_error('password'); ?></small>
 
-                            <p class="text-center fs-7">
+                            <p class="text-end fs-6">
                                 <a onclick="forget();" class="primary">Forgot password ? </a>
                             </p>
                         </div>
@@ -46,10 +51,10 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="footer d-flex justify-content-center align-items-end">
-            <p class="">Copyright&copy;BBWSSVIII2021</p>
-        </div>
+    <div class="footer">
+        <p class="text-center">Copyright&copy;BBWSSVIII2021</p>
     </div>
 
     <script src="<?= base_url('assets/'); ?>js/bootstrap.bundle.min.js"></script>
@@ -58,7 +63,7 @@
         function forget() {
             swal({
                 title: 'Forgot Password?',
-                text: 'Please Remember Your Password!',
+                text: 'Please Remember Your Password!\nOr\n Contact Your Administrator!',
                 icon: 'warning'
             });
         }

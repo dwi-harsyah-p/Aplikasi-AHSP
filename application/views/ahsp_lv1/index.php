@@ -6,7 +6,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <h3 class="text-center">Level 1</h3>
-                <a href="<?= base_url('Ahsp1/tambah'); ?>" class="btn btn-success mb-2">+ Tambah Data</a>
+                <a href="<?= base_url('ahsp1/tambah'); ?>" class="btn btn-success mb-2">+ Tambah Data</a>
                 <table class="table table-bordered table-hover table-striped bg-light" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>

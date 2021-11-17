@@ -7,14 +7,22 @@ class Ahsp1 extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Ahsp_model');
-        $this->load->library('form_validation');
-        $this->session->unset_userdata('kode');
+        if (!$this->session->userdata('nip')) {
+            $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
+            if ($this->uri->segment(2)) {
+                $this->session->set_userdata('re', $this->uri->segment(1) . '/' . $this->uri->segment(2));
+            } else {
+                $this->session->set_userdata('re', $this->uri->segment(1));
+            }
+            redirect('auth');
+        }
+        $this->session->unset_userdata('re');
     }
 
     public function index()
     {
         $data['judul'] = 'Ahsp1/index';
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         $data['ahsp_lvl1'] = $this->Ahsp_model->getTable('ahsp_level_1', 'kode_lvl_1')->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('ahsp_lv1/index', $data);
@@ -36,6 +44,7 @@ class Ahsp1 extends CI_Controller
             'required' => '{field} harus diisi'
         ]);
         $data['judul'] = 'Tambah Data Ahsp1';
+        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('ahsp_lv1/tambah');
@@ -61,7 +70,7 @@ class Ahsp1 extends CI_Controller
                 $this->session->set_userdata('kode1', $lv1['kode_lvl_1']);
                 redirect('ahsp2');
             } else {
-                $this->Ahsp_model->hapus('ahsp_level_1', $id);
+                $this->Ahsp_model->hapus('ahsp_level_1', 'id', $id);
                 $this->session->set_flashdata('flash', 'Dihapus');
                 redirect('ahsp1');
             }
@@ -79,6 +88,7 @@ class Ahsp1 extends CI_Controller
             $this->form_validation->set_rules('divisi', 'Divisi', 'required|trim', ['required' => '{field} harus diisi']);
             $this->form_validation->set_rules('uraian', 'Uraian', 'required|trim', ['required' => '{field} harus diisi']);
             $data['judul'] = 'Edit Data Ahsp1';
+            $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
             if ($this->form_validation->run() == false) {
                 $this->load->view('templates/header', $data);
                 $this->load->view('ahsp_lv1/edit', $data);
