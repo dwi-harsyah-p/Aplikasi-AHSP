@@ -60,16 +60,30 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#lingkup" aria-expanded="true" aria-controls="lingkup">
+                <i class="fas fa-fw fa-cog"></i>
                     <span>Lingkup Pekerjaan</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="lingkup" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a href="<?= base_url('ahsp1') ?>" id="lv1" class="collapse-item aktif">Level 1</a>
                         <a href="<?= base_url('ahsp2') ?>" id="lv2" class="collapse-item aktif">Level 2</a>
                         <a href="<?= base_url('ahsp3') ?>" id="lv3" class="collapse-item aktif">Level 3</a>
                         <a href="<?= base_url('ahsp4') ?>" id="lv4" class="collapse-item aktif">Level 4</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dhs" aria-expanded="true" aria-controls="dhs">
+                <i class="fas fa-fw fa-cog"></i>
+                    <span>Daftar Harga Satuan</span>
+                </a>
+                <div id="dhs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a href="<?= base_url('bahan') ?>" id="bahan" class="collapse-item aktif">Bahan</a>
+                        <a href="<?= base_url('alat') ?>" id="alat" class="collapse-item aktif">Alat</a>
+                        <a href="<?= base_url('upah') ?>" id="upah" class="collapse-item aktif">Upah</a>
                     </div>
                 </div>
             </li>
