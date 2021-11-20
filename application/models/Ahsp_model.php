@@ -227,6 +227,12 @@ class Ahsp_model extends CI_Model
         return $this->db->query($query)->row_array();
     }
 
+    public function joinuserdaerah($id)
+    {
+        $query = "SELECT user.nip, nama, password, daerah, role, is_active, date_created FROM user INNER JOIN user_role ON user_role.id = user.role_id INNER JOIN biodata on biodata.nip = user.nip LEFT JOIN daerah ON daerah.id=biodata.id_daerah WHERE biodata.id_daerah = $id";
+        return $this->db->query($query)->result_array();
+    }
+
     public function joinhargaalat($idalat = null, $daerah = null, $id = null)
     {
         if ($idalat && $daerah) {

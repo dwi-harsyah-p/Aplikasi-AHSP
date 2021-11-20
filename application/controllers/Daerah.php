@@ -56,11 +56,16 @@ class Daerah extends CI_Controller
 
             $daerah = $this->Ahsp_model->getTablewhere('daerah', 'id', $id)->row_array();
             $harga = $this->Ahsp_model->getTablewhere('harga', 'id_daerah', $daerah['id']);
+            $biouser = $this->Ahsp_model->getTablewhere('biodata', 'id_daerah', $daerah['id']);
 
             if ($harga->num_rows() > 0) {
                 $this->session->set_flashdata('row', $harga->num_rows);
                 $this->session->set_userdata('daerah', $daerah['id']);
                 redirect('harga');
+            } elseif ($biouser->num_rows() > 0) {
+                $this->session->set_flashdata('row', $biouser->num_rows);
+                $this->session->set_userdata('daerah', $daerah['id']);
+                redirect('user');
             } else {
                 $this->Ahsp_model->hapus('daerah', 'id', $id);
                 $this->session->set_flashdata('flash', 'Dihapus');

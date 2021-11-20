@@ -8,22 +8,19 @@
                     <div class="form-group">
                         <label for="level3">Grouping</label>
                         <select name="level3" id="level3" class="form-select">
-                            <option value="">-PILIH-</option>
-                            <?php
-                            foreach ($ahsp3 as $key => $val) { ?>
-                                <option value="<?= $val['kode_lvl_3']; ?>"><?= $val['kode_lvl_3'] . ' ' . $val['uraian']; ?></option>
-                            <?php } ?>
+                            <option value="<?= $ahsp3['kode_lvl_3']; ?>"><?= $ahsp3['kode_lvl_3'] . ' ' . $ahsp3['uraian']; ?></option>
                         </select>
                         <small class="form-text text-danger"><?= form_error('level3') ?></small>
                     </div>
                     <div class="form-group">
                         <label for="level4">Uraian</label>
                         <select name="level4" id="level4" class="form-select">
+                            <option value="<?= $ahsp4['kode_lvl_4']; ?>"><?= $ahsp4['kode_lvl_4'] . ' ' . $ahsp4['uraian']; ?></option>
                         </select>
                         <small class="form-text text-danger"><?= form_error('level4') ?></small>
                     </div>
 
-                    <div class="form-group" id="dynamic_fieldalat">
+                    <!-- <div class="form-group" id="dynamic_fieldalat">
                         <label for="kode">Alat</label>
                         <select name="id_alat[]" id="alat1" class="">
                             <?php
@@ -31,7 +28,7 @@
                                 <option value="<?= $val['id']; ?>"><?= $val['uraian']; ?></option>
                             <?php } ?>
                         </select>
-                        <input type="text" class="" id="koe_alat1" name="koe_alat[]" placeholder="Koefesien" autocomplete="off" required>
+                        <input type="text" class="" id="koe_alat1" name="koe_alat[]" placeholder="Koefesien" autocomplete="off" required value="<?= $ahsp['koefesien']; ?>">
                         <small class="form-text text-danger"><?= form_error('koe_alat') ?></small>
                     </div>
                     <div class="form-group">
@@ -66,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <button type="button" name="addupah" id="addupah" class="btn btn-success">Add More</button>
-                    </div>
+                    </div> -->
 
                     <button class="btn btn-primary" type="submit" name="tambah">Tambah</button>
                 </form>

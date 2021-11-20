@@ -12,7 +12,11 @@
                     </div>
                     <div class="form-group m-0">
                         <label for="nip" name="nip" class="m-1">NIP/NRP </label>
-                        <input type="text" name="nip" id="nip" class="form-control" value="<?= $datauser['nip']; ?>">
+                        <?php if ($datauser['nip'] != $this->session->userdata['nip']) { ?>
+                            <input type="text" name="nip" id="nip" class="form-control" value="<?= $datauser['nip']; ?>">
+                        <?php } else { ?>
+                            <input type="text" name="nip" id="nip" class="form-control" value="<?= $datauser['nip']; ?>" readonly>
+                        <?php } ?>
                         <small class="form-text text-danger"><?= form_error('nip'); ?></small>
                     </div>
                     <div class="form-group m-0">

@@ -100,6 +100,26 @@ $(document).ready(function(){
        });
    });
 
+    // Uraian di Controller AHSP
+    $('#level3').change(function () {
+       var id = $(this).val();
+       $.ajax({
+            url : "http://localhost/Project/pu/ahsp/getUraian",
+            method : "POST",
+            data : {id: id},
+            async : false,
+            dataType : 'json',
+            success : function(data) {
+                var html = '';
+                var i;
+                for (i = 0; i < data.length; i++) {                    
+                    html += "<option value='"+ data[i].kode_lvl_4 +"'>"+ data[i].kode_lvl_4 + ' ' + data[i].uraian + "</option>";
+                }
+                $('#level4').html(html);
+            }
+       });
+   });
+
     var j=1;                             
     $('#addalat').click(function(){           
         j++;                

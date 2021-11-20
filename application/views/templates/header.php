@@ -105,6 +105,12 @@
                     <span>User</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="<?= base_url('ahsp') ?>">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>AHSP</span>
+                </a>
+            </li>
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

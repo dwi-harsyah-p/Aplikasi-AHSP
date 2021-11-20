@@ -24,7 +24,13 @@ class User extends CI_Controller
     {
         $data['judul'] = 'Data User';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
-        $data['datauser'] = $this->Ahsp_model->joinuser();
+        $daerah = $this->session->userdata('daerah');
+        if ($daerah) {
+            $data['datauser'] = $this->Ahsp_model->joinuserdaerah($daerah);
+            $this->session->unset_userdata('daerah');
+        } else {
+            $data['datauser'] = $this->Ahsp_model->joinuser();
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('user/index', $data);
         $this->load->view('templates/footer', $data);
@@ -228,39 +234,43 @@ class User extends CI_Controller
 
     public function tambah()
     {
-
-        $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
-        $data['judul'] = 'Tambah Data User';
-        $data['role'] = $this->Ahsp_model->getTable('user_role', 'role')->result_array();
-        $data['daerah'] = $this->Ahsp_model->getTable('daerah', 'daerah')->result_array();
-        $this->form_validation->set_rules('nip', 'NIP/NRP', 'required|trim|is_unique[user.nip]|is_unique[biodata.nip]', [
-            'is_unique' => '{field} sudah ada',
-            'required' => '{field} harus diisi'
-        ]);
-        $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
-            'required' => '{field} harus diisi'
-        ]);
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]', [
-            'required' => '{field} harus diisi',
-            'min_length' => '{field} minimal {param} karakter'
-        ]);
-        $this->form_validation->set_rules('daerah', 'Daerah', 'required|trim', [
-            'required' => '{field} harus diisi'
-        ]);
-        $this->form_validation->set_rules('role', 'Role', 'required|trim', [
-            'required' => '{field} harus diisi'
-        ]);
-        $this->form_validation->set_rules('active', 'active', 'required|trim', [
-            'required' => '{field} harus diisi'
-        ]);
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('user/tambah', $data);
-            $this->load->view('templates/footer');
+        if ($this->Ahsp_model->getTable('daerah', 'daerah')->num_rows() < 1) {
+            $this->session->set_flashdata('msg', 'Harus isi Data Daerah Terlebih Dahulu!');
+            redirect('daerah');
         } else {
-            $this->Ahsp_model->tambah('user');
-            $this->session->set_flashdata('flash', 'Ditambah');
-            redirect('user');
+            $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
+            $data['judul'] = 'Tambah Data User';
+            $data['role'] = $this->Ahsp_model->getTable('user_role', 'role')->result_array();
+            $data['daerah'] = $this->Ahsp_model->getTable('daerah', 'daerah')->result_array();
+            $this->form_validation->set_rules('nip', 'NIP/NRP', 'required|trim|is_unique[user.nip]|is_unique[biodata.nip]', [
+                'is_unique' => '{field} sudah ada',
+                'required' => '{field} harus diisi'
+            ]);
+            $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
+                'required' => '{field} harus diisi'
+            ]);
+            $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[3]', [
+                'required' => '{field} harus diisi',
+                'min_length' => '{field} minimal {param} karakter'
+            ]);
+            $this->form_validation->set_rules('daerah', 'Daerah', 'required|trim', [
+                'required' => '{field} harus diisi'
+            ]);
+            $this->form_validation->set_rules('role', 'Role', 'required|trim', [
+                'required' => '{field} harus diisi'
+            ]);
+            $this->form_validation->set_rules('active', 'active', 'required|trim', [
+                'required' => '{field} harus diisi'
+            ]);
+            if ($this->form_validation->run() == false) {
+                $this->load->view('templates/header', $data);
+                $this->load->view('user/tambah', $data);
+                $this->load->view('templates/footer');
+            } else {
+                $this->Ahsp_model->tambah('user');
+                $this->session->set_flashdata('flash', 'Ditambah');
+                redirect('user');
+            }
         }
     }
     public function hapus($nip = null)

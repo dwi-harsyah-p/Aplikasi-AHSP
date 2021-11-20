@@ -16,12 +16,26 @@
                         <label for="role">role</label>
                         <select name="role" id="" class="form-select">
                             <?php
-                            foreach ($role as $key => $role) {
-                                if ($role['role'] == $datauser['role']) { ?>
-                                    <option value="<?= $role['id']; ?>" selected><?= $role['role']; ?></option>
-                                <?php } else { ?>
-                                    <option value="<?= $role['id']; ?>"><?= $role['role']; ?></option>
-                            <?php    }
+                            if ($datauser['nip'] != $this->session->userdata['nip']) {
+                                foreach ($role as $key => $role) {
+                                    if ($role['role'] == $datauser['role']) { ?>
+                                        <option value="<?= $role['id']; ?>" selected><?= $role['role']; ?></option>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <option value="<?= $role['id']; ?>"><?= $role['role']; ?></option>
+                                    <?php
+                                    }
+                                }
+                            } else {
+                                foreach ($role as $key => $role) {
+                                    if ($role['role'] == $datauser['role']) { ?>
+                                        <option value="<?= $role['id']; ?>" selected><?= $role['role']; ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                            <?php
+                                }
                             }
                             ?>
                         </select>
@@ -30,12 +44,17 @@
                     <div class="form-group">
                         <label for="active">active</label>
                         <select name="active" id="" class="form-select">
-                            <?php if ($datauser['is_active'] == 1) { ?>
+                            <?php
+                            if ($datauser['nip'] != $this->session->userdata['nip']) {
+                                if ($datauser['is_active'] == 1) { ?>
+                                    <option value="1" selected>Active</option>
+                                    <option value="0">Not Active</option>
+                                <?php } else { ?>
+                                    <option value="1">Active</option>
+                                    <option value="0" selected>Not Active</option>
+                                <?php }
+                            } else { ?>
                                 <option value="1" selected>Active</option>
-                                <option value="0">Not Active</option>
-                            <?php } else { ?>
-                                <option value="1">Active</option>
-                                <option value="0" selected>Not Active</option>
                             <?php } ?>
                         </select>
                     </div>
