@@ -110,6 +110,33 @@ class Ahsp_model extends CI_Model
             }
             $this->db->set('kategori', $kategori);
             return $this->db->insert($table, $data);
+        } elseif ($table == 'operator_alat') {
+            $data = [
+                'id_alat' => htmlspecialchars($this->input->post('alat', true)),
+                'kategori' => 'Alat',
+                'id_daerah' => htmlspecialchars($this->input->post('daerah', true)),
+                'harga' => htmlspecialchars($this->input->post('harga', true))
+            ];
+
+            return $this->db->insert('harga', $data);
+        } elseif ($table == 'operator_bahan') {
+            $data = [
+                'id_bahan' => htmlspecialchars($this->input->post('bahan', true)),
+                'kategori' => 'Bahan',
+                'id_daerah' => htmlspecialchars($this->input->post('daerah', true)),
+                'harga' => htmlspecialchars($this->input->post('harga', true))
+            ];
+
+            return $this->db->insert('harga', $data);
+        } elseif ($table == 'operator_upah') {
+            $data = [
+                'id_upah' => htmlspecialchars($this->input->post('upah', true)),
+                'kategori' => 'Upah',
+                'id_daerah' => htmlspecialchars($this->input->post('daerah', true)),
+                'harga' => htmlspecialchars($this->input->post('harga', true))
+            ];
+
+            return $this->db->insert('harga', $data);
         }
     }
 
@@ -206,6 +233,12 @@ class Ahsp_model extends CI_Model
             ];
             return $this->db->update($table, $data, ['id' => $this->input->post('id', true)]);
         } elseif ($table == 'harga') {
+            return $this->db->update('harga', ['harga' => htmlspecialchars($this->input->post('harga', true))], ['id' => htmlspecialchars($this->input->post('id'))]);
+        } elseif ($table == 'operator_alat') {
+            return $this->db->update('harga', ['harga' => htmlspecialchars($this->input->post('harga', true))], ['id' => htmlspecialchars($this->input->post('id'))]);
+        } elseif ($table == 'operator_bahan') {
+            return $this->db->update('harga', ['harga' => htmlspecialchars($this->input->post('harga', true))], ['id' => htmlspecialchars($this->input->post('id'))]);
+        } elseif ($table == 'operator_upah') {
             return $this->db->update('harga', ['harga' => htmlspecialchars($this->input->post('harga', true))], ['id' => htmlspecialchars($this->input->post('id'))]);
         }
     }

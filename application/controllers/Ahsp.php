@@ -112,8 +112,9 @@ class Ahsp extends CI_Controller
         $data['judul'] = 'Detail Data AHSP';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/user/header', $data);
+        $this->load->view('ahsp/detail', $data);
+        $this->load->view('templates/user/footer');
     }
 
     public function edit($id = null)
