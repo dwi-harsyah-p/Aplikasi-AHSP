@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Nov 2021 pada 07.04
+-- Waktu pembuatan: 06 Des 2021 pada 09.14
 -- Versi server: 10.4.14-MariaDB
 -- Versi PHP: 7.4.11
 
@@ -43,9 +43,23 @@ CREATE TABLE `ahsp` (
 --
 
 INSERT INTO `ahsp` (`id`, `kode_lvl_4`, `id_alat`, `id_bahan`, `id_upah`, `koefesien`) VALUES
-(141, '2.2.1.1', 12, 0, 0, '1'),
-(142, '2.2.1.1', 0, 11, 0, '2'),
-(143, '2.2.1.1', 0, 0, 10, '3');
+(180, '2.2.1.1', 18, 0, 0, '1'),
+(181, '2.2.1.1', 17, 0, 0, '2'),
+(182, '2.2.1.1', 0, 11, 0, '3'),
+(183, '2.2.1.1', 0, 0, 12, '4'),
+(195, '2.2.1.2', 18, 0, 0, '1'),
+(196, '2.2.1.2', 17, 0, 0, '2'),
+(197, '2.2.1.2', 0, 11, 0, '3'),
+(198, '2.2.1.2', 0, 10, 0, '4'),
+(199, '2.2.1.2', 0, 0, 12, '5'),
+(200, '2.2.1.2', 0, 0, 13, '6'),
+(201, '2.2.1.2', 0, 0, 14, '7'),
+(202, '2.2.1.3', 18, 0, 0, '0.1'),
+(203, '2.2.1.3', 17, 0, 0, '0.2'),
+(204, '2.2.1.3', 0, 11, 0, '0.5'),
+(205, '2.2.1.3', 0, 10, 0, '0.7'),
+(206, '2.2.1.3', 0, 0, 12, '0.6'),
+(207, '2.2.1.3', 0, 0, 13, '0.3');
 
 -- --------------------------------------------------------
 
@@ -145,7 +159,8 @@ CREATE TABLE `ahsp_level_4` (
 
 INSERT INTO `ahsp_level_4` (`id`, `kode_lvl_3`, `kode_lvl_4`, `uraian`) VALUES
 (5, '2.2.1', '2.2.1.1', 'Pembuatan 1 m2 pagar sementara dari kayu'),
-(18, '2.2.1', '2.2.1.2', 'Tes');
+(18, '2.2.1', '2.2.1.2', 'Tes'),
+(21, '2.2.1', '2.2.1.3', 'Pembangunan Jembatan 10m');
 
 -- --------------------------------------------------------
 
@@ -165,9 +180,8 @@ CREATE TABLE `alat` (
 --
 
 INSERT INTO `alat` (`id`, `uraian`, `kode`, `satuan`) VALUES
-(10, 'Sekop', 'SK1', 'Unit'),
-(11, 'Gerobak', 'GR1', 'Unit'),
-(12, 'Cangkul', 'CK1', 'Unit');
+(17, 'Sekop', 'SK1', 'Unit'),
+(18, 'Cangkul', 'CK1', 'Unit');
 
 -- --------------------------------------------------------
 
@@ -188,8 +202,7 @@ CREATE TABLE `bahan` (
 
 INSERT INTO `bahan` (`id`, `uraian`, `kode`, `satuan`) VALUES
 (10, 'Semen', 'SM1', 'KG'),
-(11, 'Besi', 'BS1', 'Batang'),
-(12, 'Kayu', 'KY1', 'Batang');
+(11, 'Besi', 'BS1', 'Batang');
 
 -- --------------------------------------------------------
 
@@ -214,7 +227,9 @@ CREATE TABLE `biodata` (
 --
 
 INSERT INTO `biodata` (`id`, `nip`, `nama`, `tgl_lahir`, `jenis_kelamin`, `image`, `alamat`, `id_daerah`, `no_telp`) VALUES
-(1, '123', 'Dwi Harsyah Prasetya', '2002-02-10', 'Laki-laki', 'IMG-20190430-WA0031.jpg', 'Jl. Pakri 1 Rusunawa Polda Sumsel No.103 Kel Duku Kec Ilir Timur II', 2, '0823628800');
+(1, '123', 'Dwi Harsyah Prasetya', '2002-02-10', 'Laki-laki', '3122700-200.png', 'Jl. Pakri 1 Rusunawa Polda Sumsel No.103 Kel Duku Kec Ilir Timur II', 5, '082376287800'),
+(24, '321', 'Ade Prastyo', '2001-01-01', 'Laki-laki', 'default.jpg', 'Jl. Kebenaran', 5, '1234567890'),
+(25, '111', 'Fanisa Diva', '2001-01-01', '', 'default.jpg', '', 5, '');
 
 -- --------------------------------------------------------
 
@@ -257,12 +272,13 @@ CREATE TABLE `harga` (
 --
 
 INSERT INTO `harga` (`id`, `id_alat`, `id_bahan`, `id_upah`, `kategori`, `id_daerah`, `harga`) VALUES
-(49, 12, 0, 0, 'Alat', 3, 12345678),
-(50, 11, 0, 0, 'Alat', 3, 1),
-(51, 0, 11, 0, 'Bahan', 3, 1),
-(52, 0, 0, 10, 'Upah', 3, 1),
-(53, 12, 0, 0, 'Alat', 4, 1),
-(54, 12, 0, 0, 'Alat', 5, 1);
+(86, 0, 10, 0, 'Bahan', 5, 12000),
+(87, 0, 11, 0, 'Bahan', 5, 13000),
+(88, 0, 0, 12, 'Upah', 5, 50000),
+(89, 0, 0, 13, 'Upah', 5, 20000),
+(90, 0, 0, 14, 'Upah', 5, 15000),
+(91, 17, 0, 0, 'Alat', 5, 9000),
+(92, 18, 0, 0, 'Alat', 5, 8000);
 
 -- --------------------------------------------------------
 
@@ -282,9 +298,9 @@ CREATE TABLE `upah` (
 --
 
 INSERT INTO `upah` (`id`, `uraian`, `kode`, `satuan`) VALUES
-(9, 'Pekerja', 'PK1', 'OH'),
-(10, 'Mandor', 'MN1', 'OH'),
-(11, 'Tukang Gali', 'TG1', 'OH');
+(12, 'Mandor', 'MN1', 'OH'),
+(13, 'Pekerja', 'PK1', 'OH'),
+(14, 'Tukang Batu', 'TB1', 'OH');
 
 -- --------------------------------------------------------
 
@@ -306,7 +322,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nip`, `password`, `role_id`, `is_active`, `date_created`) VALUES
-(1, '123', '$2y$10$QnWHJLDGHjAFvpZRRbQYI.3Rmmi1CQRCF3hvOzne.eR92MAr0qnUO', 1, 1, 1630833298);
+(1, '123', '$2y$10$EWZnvUaA5jq0Ii4allefbOSmKRG0epmBKL0cuqqVoWzx6Sh5s1A.C', 1, 1, 1630833298),
+(28, '321', '$2y$10$JdPfQ1PNFqjmFoUCBVwrre.ZeUlXOGsLMflnWrZUAMc64RvFOZGT6', 2, 1, 1638245855),
+(29, '111', '$2y$10$uEuYBaLv6j5hPfkrO66RpukL4gq1rb8Y.M5WmAFDeYwv/.R4r2rKy', 3, 1, 1638247799);
 
 -- --------------------------------------------------------
 
@@ -325,7 +343,8 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
 (1, 'Admin\r\n'),
-(2, 'User');
+(2, 'Operator'),
+(3, 'User');
 
 --
 -- Indexes for dumped tables
@@ -420,7 +439,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT untuk tabel `ahsp`
 --
 ALTER TABLE `ahsp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_1`
@@ -438,19 +457,19 @@ ALTER TABLE `ahsp_level_2`
 -- AUTO_INCREMENT untuk tabel `ahsp_level_3`
 --
 ALTER TABLE `ahsp_level_3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `ahsp_level_4`
 --
 ALTER TABLE `ahsp_level_4`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `bahan`
@@ -462,7 +481,7 @@ ALTER TABLE `bahan`
 -- AUTO_INCREMENT untuk tabel `biodata`
 --
 ALTER TABLE `biodata`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `daerah`
@@ -474,25 +493,25 @@ ALTER TABLE `daerah`
 -- AUTO_INCREMENT untuk tabel `harga`
 --
 ALTER TABLE `harga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT untuk tabel `upah`
 --
 ALTER TABLE `upah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

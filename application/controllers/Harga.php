@@ -15,8 +15,16 @@ class Harga extends CI_Controller
                 $this->session->set_userdata('re', $this->uri->segment(1));
             }
             redirect('auth');
+        } else {
+            $this->session->unset_userdata('re');
+            $data['user_role'] = $this->Ahsp_model->getTablewhere('user', 'nip', $this->session->userdata('nip'))->row_array();
+            $data['role'] = $this->Ahsp_model->getTablewhere('user_role', 'id', $data['user_role']['role_id'])->row_array();
+            if ($data['role']['role'] == 'Operator') {
+                redirect('blocked');
+            } elseif ($data['role']['role'] == 'User') {
+                redirect('blocked');
+            }
         }
-        $this->session->unset_userdata('re');
     }
 
     public function index()

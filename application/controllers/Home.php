@@ -8,7 +8,21 @@ class Home extends CI_Controller
         parent::__construct();
         if (!$this->session->userdata('nip')) {
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
+            if ($this->uri->segment(2)) {
+                $this->session->set_userdata('re', $this->uri->segment(1) . '/' . $this->uri->segment(2));
+            } else {
+                $this->session->set_userdata('re', $this->uri->segment(1));
+            }
             redirect('auth');
+        } else {
+            $this->session->unset_userdata('re');
+            $data['user_role'] = $this->Ahsp_model->getTablewhere('user', 'nip', $this->session->userdata('nip'))->row_array();
+            $data['role'] = $this->Ahsp_model->getTablewhere('user_role', 'id', $data['user_role']['role_id'])->row_array();
+            if ($data['role']['role'] == 'Operator') {
+                redirect('operator');
+            } elseif ($data['role']['role'] == 'User') {
+                redirect('operator');
+            }
         }
     }
 

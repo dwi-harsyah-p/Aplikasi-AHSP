@@ -14,8 +14,16 @@ class Bahan extends CI_Controller
                 $this->session->set_userdata('re', $this->uri->segment(1));
             }
             redirect('auth');
+        } else {
+            $this->session->unset_userdata('re');
+            $data['user_role'] = $this->Ahsp_model->getTablewhere('user', 'nip', $this->session->userdata('nip'))->row_array();
+            $data['role'] = $this->Ahsp_model->getTablewhere('user_role', 'id', $data['user_role']['role_id'])->row_array();
+            if ($data['role']['role'] == 'Operator') {
+                redirect('blocked');
+            } elseif ($data['role']['role'] == 'User') {
+                redirect('blocked');
+            }
         }
-        $this->session->unset_userdata('re');
     }
 
     public function index()
@@ -62,11 +70,16 @@ class Bahan extends CI_Controller
         } else {
             $bahan = $this->Ahsp_model->getTablewhere('bahan', 'id', $id)->row_array();
             $harga = $this->Ahsp_model->getTablewhere('harga', 'id_bahan', $bahan['id']);
+            $ahsp = $this->Ahsp_model->getTablewhere('ahsp', 'id_bahan', $bahan['id']);
 
             if ($harga->num_rows() > 0) {
                 $this->session->set_flashdata('row', $harga->num_rows);
                 $this->session->set_userdata('bahan', $bahan['id']);
                 redirect('harga');
+            } elseif ($ahsp->num_rows() > 0) {
+                $this->session->set_flashdata('row', $ahsp->num_rows);
+                $this->session->set_userdata('bahan', $bahan['id']);
+                redirect('ahsp');
             } else {
                 $this->Ahsp_model->hapus('bahan', 'id', $id);
                 $this->session->set_flashdata('flash', 'Dihapus');

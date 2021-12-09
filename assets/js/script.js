@@ -103,7 +103,7 @@ $(document).ready(function(){
     // Uraian di Controller AHSP
     $('#level3').change(function () {
        var id = $(this).val();
-       $.ajax({
+       $.ajax({ 
             url : "http://localhost/Project/pu/ahsp/getUraian",
             method : "POST",
             data : {id: id},

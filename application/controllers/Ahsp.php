@@ -23,13 +23,27 @@ class Ahsp extends CI_Controller
     {
         $data['judul'] = 'Data AHSP';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
-
-        $query = "SELECT DISTINCT ahsp.kode_lvl_4, ahsp_level_4.uraian FROM ahsp INNER JOIN ahsp_level_4 ON ahsp.kode_lvl_4 = ahsp_level_4.kode_lvl_4";
+        $alat = $this->session->userdata('alat');
+        $bahan = $this->session->userdata('bahan');
+        $upah = $this->session->userdata('upah');
+        if ($alat) {
+            $query = "SELECT DISTINCT ahsp.kode_lvl_4, ahsp_level_4.uraian FROM ahsp INNER JOIN ahsp_level_4 ON ahsp.kode_lvl_4 = ahsp_level_4.kode_lvl_4 WHERE id_alat = $alat";
+            $this->session->unset_userdata('alat');
+        } elseif ($bahan) {
+            $query = "SELECT DISTINCT ahsp.kode_lvl_4, ahsp_level_4.uraian FROM ahsp INNER JOIN ahsp_level_4 ON ahsp.kode_lvl_4 = ahsp_level_4.kode_lvl_4 WHERE id_bahan = $bahan";
+            $this->session->unset_userdata('bahan');;
+        } elseif ($upah) {
+            $query = "SELECT DISTINCT ahsp.kode_lvl_4, ahsp_level_4.uraian FROM ahsp INNER JOIN ahsp_level_4 ON ahsp.kode_lvl_4 = ahsp_level_4.kode_lvl_4 WHERE id_upah = $upah";
+            $this->session->unset_userdata('upah');
+        } else {
+            $query = "SELECT DISTINCT ahsp.kode_lvl_4, ahsp_level_4.uraian FROM ahsp INNER JOIN ahsp_level_4 ON ahsp.kode_lvl_4 = ahsp_level_4.kode_lvl_4";
+        }
         $data['ahsp'] = $this->db->query($query)->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('ahsp/index', $data);
         $this->load->view('templates/footer', $data);
     }
+
     public function getUraian()
     {
         $id = $this->input->post('id');
@@ -107,14 +121,45 @@ class Ahsp extends CI_Controller
         }
     }
 
-    public function detail($id = null)
+    public function detail()
     {
         $data['judul'] = 'Detail Data AHSP';
         $data['user'] = $this->Ahsp_model->getTablewhere('biodata', 'nip', $this->session->userdata('nip'))->row_array();
-
-        $this->load->view('templates/user/header', $data);
-        $this->load->view('ahsp/detail', $data);
-        $this->load->view('templates/user/footer');
+        $data['ahsp3'] = $this->Ahsp_model->getTable('ahsp_level_3', 'uraian')->result_array();
+        if ($this->input->post('level4')) {
+            $data['kode4'] = $this->input->post('level4');
+            $data['ahsp4'] = $this->Ahsp_model->getTablewhere('ahsp_level_4', 'kode_lvl_4', $data['kode4'])->row_array();
+            $data['ahsp'] = $this->Ahsp_model->getTablewhere('ahsp', 'kode_lvl_4', $data['kode4'])->result_array();
+            foreach ($data['ahsp'] as $key => $value) {
+                if ($value['id_alat'] == 0) {
+                    continue;
+                }
+                $data['alat'][] = $this->db->query("SELECT alat.uraian, alat.kode, alat.satuan, harga.harga, ahsp.koefesien FROM alat INNER JOIN harga ON alat.id = harga.id_alat INNER JOIN ahsp ON alat.id = ahsp.id_alat WHERE alat.id = " . $value['id_alat'] . " AND harga.id_daerah = " . $data['user']['id_daerah'] . " AND kode_lvl_4 = '" . $data['kode4'] . "'")->row_array();
+            }
+            foreach ($data['ahsp'] as $key => $value) {
+                if ($value['id_bahan'] == 0) {
+                    continue;
+                }
+                $data['bahan'][] = $this->db->query("SELECT bahan.uraian, bahan.kode, bahan.satuan, harga.harga, ahsp.koefesien FROM bahan INNER JOIN harga ON bahan.id = harga.id_bahan INNER JOIN ahsp ON bahan.id = ahsp.id_bahan WHERE bahan.id = " . $value['id_bahan'] . " AND harga.id_daerah = " . $data['user']['id_daerah'] . " AND kode_lvl_4 = '" . $data['kode4'] . "'")->row_array();
+            }
+            foreach ($data['ahsp'] as $key => $value) {
+                if ($value['id_upah'] == 0) {
+                    continue;
+                }
+                $data['upah'][] = $this->db->query("SELECT upah.uraian, upah.kode, upah.satuan, harga.harga, ahsp.koefesien FROM upah INNER JOIN harga ON upah.id = harga.id_upah INNER JOIN ahsp ON upah.id = ahsp.id_upah WHERE upah.id = " . $value['id_upah'] . " AND harga.id_daerah = " . $data['user']['id_daerah'] . " AND kode_lvl_4 = '" . $data['kode4'] . "'")->row_array();
+                // var_dump($data['upah']);
+            }
+            $data['total_alat'] = $this->db->query("SELECT sum((harga.harga * ahsp.koefesien) + harga.harga) AS total FROM harga INNER JOIN ahsp ON harga.id_alat = ahsp.id_alat WHERE ahsp.kode_lvl_4 = '" . $data['kode4'] . "'" . " AND NOT ahsp.id_alat = 0")->row_array();
+            $data['total_bahan'] = $this->db->query("SELECT sum((harga.harga * ahsp.koefesien) + harga.harga) AS total FROM harga INNER JOIN ahsp ON harga.id_bahan = ahsp.id_bahan WHERE ahsp.kode_lvl_4 = '" . $data['kode4'] . "'" . " AND NOT ahsp.id_bahan = 0")->row_array();
+            $data['total_upah'] = $this->db->query("SELECT sum((harga.harga * ahsp.koefesien) + harga.harga) AS total FROM harga INNER JOIN ahsp ON harga.id_upah = ahsp.id_upah WHERE ahsp.kode_lvl_4 = '" . $data['kode4'] . "'" . " AND NOT ahsp.id_upah = 0")->row_array();
+            $this->load->view('templates/user/header', $data);
+            $this->load->view('ahsp/ahsp', $data);
+            $this->load->view('templates/user/footer');
+        } else {
+            $this->load->view('templates/user/header', $data);
+            $this->load->view('ahsp/detail', $data);
+            $this->load->view('templates/user/footer');
+        }
     }
 
     public function edit($id = null)
