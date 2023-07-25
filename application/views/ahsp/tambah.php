@@ -6,7 +6,7 @@
                 <h3 class="text-center">AHSP</h3>
                 <form class="p-4" action="" method="post">
                     <div class="form-group">
-                        <label for="level3">Grouping</label>
+                        <label for="level3">Kelompok Pekerjaan</label>
                         <select name="level3" id="level3" class="form-select">
                             <option value="">-PILIH-</option>
                             <?php
@@ -17,14 +17,14 @@
                         <small class="form-text text-danger"><?= form_error('level3') ?></small>
                     </div>
                     <div class="form-group">
-                        <label for="level4">Uraian</label>
+                        <label for="level4">Jenis Pekerjaan</label>
                         <select name="level4" id="level4" class="form-select">
                         </select>
                         <small class="form-text text-danger"><?= form_error('level4') ?></small>
                     </div>
 
                     <div class="form-group" id="dynamic_fieldalat">
-                        <label for="kode">Alat</label>
+                        <label for="kode">Alat</label><br>
                         <select name="id_alat[]" id="alat1" class="">
                             <?php
                             foreach ($alat as $key => $val) { ?>
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="form-group" id="dynamic_fieldbahan">
-                        <label for="satuan">Bahan</label>
+                        <label for="satuan">Bahan</label><br>
                         <select name="id_bahan[]" id="bahan1" class="">
                             <?php
                             foreach ($bahan as $key => $val) { ?>
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="form-group" id="dynamic_fieldupah">
-                        <label for="satuan">Tenaga</label>
+                        <label for="satuan">Tenaga</label><br>
                         <select name="id_upah[]" id="upah1" class="">
                             <?php
                             foreach ($upah as $key => $val) { ?>

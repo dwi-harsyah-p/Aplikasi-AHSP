@@ -36,7 +36,8 @@
 </script>
 <script src="https://kit.fontawesome.com/206142bfe3.js" crossorigin="anonymous"></script>
 
-<script>
+
+<script> 
     $(function() {
         $('[data-bs-toggle="tooltip"]').tooltip();
     });
@@ -44,8 +45,19 @@
 <script src="<?= base_url('assets/'); ?>vendor/jquery/jquery.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="<?= base_url('assets/js/'); ?>script.js"></script>
-<!-- End Script -->
 
+<script>
+    $('#print').click(function () {
+        window.print(); 
+    });
+</script>
+
+<!-- Page level plugins -->
+<script src="<?= base_url('assets/'); ?>vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 </body>
 
 </html>

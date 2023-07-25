@@ -1,3 +1,5 @@
+const base_url = 'http://localhost:8080/Project/pu/';
+
 const flashData = $('.flash-data').data('flashdata');
     if (flashData) {
         swal({
@@ -61,19 +63,19 @@ const msg = $('.flash-pesan').data('flashdata');
     
 $(document).ready(function(){
     // Set auto Kode Ahsp2
-    if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp2/tambah') { 
+    if ($(location).attr('href') == `${base_url}ahsp2/tambah`) { 
         $('#kode2').val($('select#kode1').val() + '.');             
         $('select#kode1').on('change', function() {
             $('#kode2').val($(this).val() + '.');
         }); 
     // Set auto Kode Ahsp3   
-    }else if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp3/tambah') {         
+    }else if ($(location).attr('href') == `${base_url}ahsp3/tambah`) {         
         $('#kode3').val($('select#kode2').val() + '.'); 
         $('select#kode2').on('change', function() {
             $('#kode3').val($(this).val() + '.');
         });
     // Set auto Kode Ahsp4
-    }else if ($(location).attr('href') == 'http://localhost/Project/pu/ahsp4/tambah') {         
+    }else if ($(location).attr('href') == `${base_url}ahsp4/tambah`) {         
         $('#kode4').val($('select#kode3').val() + '.'); 
         $('select#kode3').on('change', function() {
             $('#kode4').val($(this).val() + '.');
@@ -83,8 +85,8 @@ $(document).ready(function(){
     // Kategori Uraian di Controller Harga
     $('#kategori').change(function () {
        var id = $(this).val();
-       $.ajax({
-            url : "http://localhost/Project/pu/harga/getUraian",
+       $.ajax({            
+            url : `${base_url}harga/getUraian`,
             method : "POST",
             data : {id: id},
             async : false,
@@ -104,7 +106,7 @@ $(document).ready(function(){
     $('#level3').change(function () {
        var id = $(this).val();
        $.ajax({ 
-            url : "http://localhost/Project/pu/ahsp/getUraian",
+            url : `${base_url}ahsp/getUraian`,
             method : "POST",
             data : {id: id},
             async : false,
@@ -127,7 +129,7 @@ $(document).ready(function(){
 
         var id = 'Alat';
         $.ajax({
-                url : "http://localhost/Project/pu/harga/getUraian",
+                url : `${base_url}harga/getUraian`,
                 method : "POST",
                 data : {id: id},
                 async : false,
@@ -155,7 +157,7 @@ $(document).ready(function(){
 
         var id = 'Bahan';
         $.ajax({
-                url : "http://localhost/Project/pu/harga/getUraian",
+                url : `${base_url}harga/getUraian`,
                 method : "POST",
                 data : {id: id},
                 async : false,
@@ -183,7 +185,7 @@ $(document).ready(function(){
 
         var id = 'Upah';
         $.ajax({
-                url : "http://localhost/Project/pu/harga/getUraian",
+                url : `${base_url}harga/getUraian`,
                 method : "POST",
                 data : {id: id},
                 async : false,
@@ -204,3 +206,5 @@ $(document).ready(function(){
         $('#rowupah'+button_id+'').remove();           
     });
 });
+ 
+

@@ -7,9 +7,8 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <p>AHSP merupakan Lorem ipsum dolor sit amet consectetur adipisicing elit. Error debitis nisi veritatis soluta aut, eum molestias corrupti facere, obcaecati omnis eaque mollitia quia quibusdam est earum minus officia sed perferendis.</p>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti rem optio accusantium, cum ratione esse perferendis quidem repellendus molestiae necessitatibus minus temporibus eos odio officia, voluptate, atque delectus
-                in? Esse?</p>
+            <p>AHSP merupakan dokumen yang berisi harga satuan pekerjaan berdasarkan kelompok kerja dan lingkup kerja. kemudian dalam dokumen ini berisi data harga satuan pekerjaan pada setiap daerah di wilayah sungai sumatera sungai VIII.</p>
+            <p class="mb-0">Contohnya data pembuatan pembangunan</p>
         </div>
     </div>
 </div>

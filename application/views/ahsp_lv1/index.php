@@ -1,7 +1,8 @@
 <!-- Lingkup Pekerjaan  -->
 <!-- menu 1 -->
 <div class="container-fluid">
-    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
+    <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>    
+    <?php unset($_SESSION['flash']); ?>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">

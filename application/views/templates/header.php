@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+ 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -77,7 +77,7 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#hargasatuan" aria-expanded="true" aria-controls="hargasatuan">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-calculator"></i>
                     <span>Daftar Harga Satuan</span>
                 </a>
                 <div id="hargasatuan" class="collapse" aria-labelledby="hargasatuan" data-parent="#accordionSidebar">
@@ -94,20 +94,20 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?= base_url('daerah') ?>">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-home"></i>
                     <span>Daerah</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?= base_url('user') ?>">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>User</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="<?= base_url('ahsp') ?>">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-archive"></i>
                     <span>AHSP</span>
                 </a>
             </li>

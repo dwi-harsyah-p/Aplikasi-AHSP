@@ -31,6 +31,7 @@
                 <div class="card p-lg-4">
                     <h2 class="text-center">Login</h2>
                     <?= $this->session->flashdata('massage'); ?>
+                    <?php unset($_SESSION['massage']); ?>
                     <form class="p-lg-4" action="" method="post">
                         <div class="mb-3">
                             <!-- <label for="exampleInputEmail1" class="form-label">NIP</label> -->

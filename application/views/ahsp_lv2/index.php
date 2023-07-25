@@ -2,7 +2,9 @@
 <!-- menu 1 -->
 <div class="container-fluid">
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
+    <?php unset($_SESSION['flash']); ?>
     <div class="flash-delete" data-flashdata="<?= $this->session->flashdata('row') ?>"></div>
+    <?php unset($_SESSION['row']); ?>
     <div class="card shadow mb-4">
         <div class="card-body table-border-style">
             <div class="table-responsive">

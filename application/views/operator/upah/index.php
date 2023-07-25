@@ -1,11 +1,15 @@
 <!-- Main -->
 <div class="container col-lg-9 py-lg-3">
     <div class="flash-data" data-flashdata="<?= $this->session->flashdata('flash') ?>"></div>
+    <?php unset($_SESSION['flash']); ?>
     <div class="flash-pesan" data-flashdata="<?= $this->session->flashdata('msg') ?>"></div>
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                <h3 class="text-center"><?= $judul; ?></h3>
+            <h3 class="text-center"><?php echo $judul . " ";
+                foreach ($daerah as $key => $value) {
+                    echo $value;
+                } ?></h3>
                 <a href="<?= base_url('operator/tambah_upah'); ?>" class="btn btn-success mb-2">+ Tambah Data</a>
                 <table class="table table-bordered table-hover table-striped bg-light" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -49,6 +53,15 @@
                 </table>
             </div>
         </div>
+        <div class="d-flex flex-row-reverse">
+                        
+                            <!-- <input class="btn btn-outline-success me-lg-2" id="print" type="submit" name="print" value="print"> -->
+                        <button class="btn btn-outline-success me-lg-2" id="print" type="submit" name="print">
+                            <span class="fa fa-print">
+                            Print
+                        </button>
+                        
+                    </div>
     </div>
 </div>
 <!--End Main -->

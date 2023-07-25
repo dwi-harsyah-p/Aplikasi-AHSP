@@ -5,7 +5,7 @@ class Daerah extends CI_Controller
 {
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct();                
         if (!$this->session->userdata('nip')) {
             $this->session->unset_userdata('re');
             $this->session->set_flashdata('massage', '<div class="alert alert-danger" role="alert">Harus Login Terlebih Dahulu!</div>');
